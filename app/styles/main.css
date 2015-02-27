@@ -1,0 +1,22 @@
+html, body{
+  font-family: "Open Sans" !important;
+}
+
+.thin{
+  font-weight: 100 !important;
+}
+
+
+
+.card-product{
+  float: left;
+  text-align:center;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 0px; 
+}
+
+
+.categories > *{
+  padding:30px !important;
+}
