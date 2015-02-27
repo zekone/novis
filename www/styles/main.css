@@ -13,9 +13,11 @@ html, body{
   text-align:center;
 
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  border-radius: 0px; 
+  border-radius: 0px;
 }
-
+.prod-img{
+  width: 100%;
+}
 
 .categories > *{
   padding:30px !important;
