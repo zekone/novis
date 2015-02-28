@@ -36,7 +36,10 @@ angular
         templateUrl: 'views/category.html',
         controller: 'CategoryCtrl'
       })
-
+      .when('/product/:prodID', {
+        templateUrl: 'views/product.html',
+        controller: 'ProductCtrl'
+      })
 
 
       .otherwise({

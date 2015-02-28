@@ -26,33 +26,4 @@ angular.module('yoNovisApp')
 
 
 
-
-
-    // query.find({
-    //   success: function(res){
-    //       console.log(res[0]);
-    //       var catid = res[0].attributes['cat_id'];
-    //
-    //
-    //       var products = Parse.Object.extend("products");
-    //       var query = new Parse.Query(products);
-    //       query.equalTo("category", res[0]);
-    //
-    //       query.find({
-    //              success :  function(prods){
-    //                console.log(prods);
-    //                $scope.products = prods;
-    //              },
-    //              error : function(error) {
-    //                 alert("Error: " + error.code + " " + error.message);
-    //              }
-    //
-    //       });
-    //
-    //
-    //   }
-    // });
-    //
-
-
-  });
+});

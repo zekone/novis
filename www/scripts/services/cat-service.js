@@ -44,7 +44,24 @@ angular.module('yoNovisApp')
 
           return defer.promise;
 
+        },
+        getProduct: function(id) {
+          var defer = $q.defer();
+
+
+          var products = Parse.Object.extend("products");
+          var query = new Parse.Query(products);
+
+
+          query.get(id, {
+            success : function(res){
+              defer.resolve(res);
+            }
+          });
+
+          return defer.promise;
         }
+
       };
     return products;
 
