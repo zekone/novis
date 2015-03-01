@@ -37,7 +37,7 @@
     <div class="bar bar-header">
       <!-- <button class="button button-icon icon ion-navicon"></button> -->
       <div class="h1 title"><a href="#/">NOVIS</a></div>
-      <button class="button button-clear button-positive">cart</button>
+      <button class="button button-clear button-dark">cart</button>
     </div>
 
 
@@ -47,7 +47,7 @@
 
     <!-- view -->
     <div class="container"><br><br><br>
-      <div ng-include="'/partials/nav.html'"></div>
+      <div ng-controller="NavCtrl" ng-include="'/partials/nav.html'"></div>
 
     <div ng-view=""></div>
 
@@ -112,6 +112,7 @@
         <script src="scripts/services/cat-service.js"></script>
         <script src="scripts/controllers/category.js"></script>
         <script src="scripts/controllers/product.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
         <!-- endbuild -->
 
 </body>

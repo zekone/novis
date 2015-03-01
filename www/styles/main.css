@@ -1,24 +1,40 @@
-html, body{
+html, body, *{
   font-family: "Open Sans" !important;
+  color: #444 !important;
 }
 
 .thin{
   font-weight: 100 !important;
 }
 
-
+a, a:focus, a:active, a:hover{
+  color: #444;
+}
 
 .card-product{
   float: left;
   text-align:center;
-
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   border-radius: 0px;
+}
+.card-product > a:hover{
+
 }
 .prod-img{
   width: 100%;
 }
 
 .categories > *{
-  padding:30px !important;
+  margin: 0 20px;
+
+}
+.active a, .active a:hover{
+  text-decoration: none;
+}
+
+
+.active {
+    transition: .4s all;
+    font-weight:bolder !important;
+    border-bottom: 3px solid grey;
 }
