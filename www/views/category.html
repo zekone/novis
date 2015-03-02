@@ -3,17 +3,6 @@ We're in category with id: {{id}}
 <p>This is the category view.</p>
 
 
-
-
-<div class="row">
-  <div class="card card-product col-lg-3" ng-repeat="item in products">
-    <a href="#/product/{{item.id}}" >
-      <div class="item item-text-wrap">
-            <img class="prod-img" src="{{item.attributes.image}}" /><br>
-            <h4>{{item.attributes.title}}</h4>
-            <h5 class="thin no-under">${{item.attributes.price}}</h5>
-
-      </div>
-    </a>
-  </div>
+<div ng-repeat="item in items">
+  <product-card></product-card>
 </div>

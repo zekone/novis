@@ -1,8 +1,10 @@
-html, body, *{
+html, body{
   font-family: "Open Sans" !important;
   color: #444;
 }
-
+*{
+  transition: .3s all ease-in-out;
+}
 .site-title{
   /*position: absolute;*/
   top: 0;
@@ -39,8 +41,8 @@ a, a:focus, a:active, a:hover{
   border-radius: 0px;
 }
 .card-product:hover{
-  transition: 0.3s all;
-  box-shadow: 0 5px 25px -10px rgba(0, 0, 0, 0.1);
+  /*transition: 0.3s all;*/
+  box-shadow: 0 5px 25px -10px rgba(0, 0, 0, 0.2);
 }
 .card-product > a, .card-product > a:hover{
   text-decoration: none;
@@ -59,7 +61,26 @@ a, a:focus, a:active, a:hover{
 
 
 .active {
-    transition: .4s all;
+    /*transition: .3s all;*/
     font-weight:bolder !important;
     border-bottom: 3px solid grey;
+}
+
+#opencart{
+  text-align:right;
+}
+.cart{
+  text-align: right;
+  float:right;
+  display: none;
+  background : #ffffff;
+  box-shadow:  0 5px 25px -10px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin-top:-40px;
+  position:absolute;
+  right: 0;
+  z-index: 999;
+}
+.cart.show{
+  display: block;
 }

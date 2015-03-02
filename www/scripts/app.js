@@ -52,4 +52,19 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+
+
+  // DIRECTIVES
+  .directive('productCard', function() {
+    return {
+      scope: true,  // use a child scope that inherits from parent
+      restrict: 'AE',
+      replace: 'true',
+      templateUrl: 'partials/product_card.html'
+    };
+  })
+
+
+
+  ;

@@ -7,5 +7,24 @@
   </ul>
 </div>
 
+
+<div id="opencart" class="container-fluid btn btn-block ">
+  <a >CART</a>
+</div>
 <hr>
-<br>
+
+<div class="container-fluid" style="position:relative;">
+<div class="cart">
+     <ngcart-cart></ngcart-cart>
+</div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+
+  $('#opencart').click(function(){
+    $('.cart').toggleClass("show");
+  });
+});
+</script>

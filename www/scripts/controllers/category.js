@@ -21,7 +21,7 @@ angular.module('yoNovisApp')
     query.equalTo("cat_id", parseInt(id));
 
     catService.getCatProducts(id).then(function(d){
-      $scope.products = d;
+      $scope.items = d;
     })
 
 

@@ -134,13 +134,14 @@
 
 
     <script type="text/ng-template" id="template/ngCart/cart.html">
-      <div class="alert alert-warning" role="alert" ng-show="ngCart.totalItems() === 0">
+
+      <div class="" role="alert" ng-show="ngCart.totalItems() === 0">
         Your cart is empty
     </div>
 
     <div class="table-responsive col-lg-12" ng-show="ngCart.totalItems() > 0">
 
-        <table class="table table-striped ngCart cart">
+        <table class="table table-striped ngCart">
 
             <thead>
             <tr>
@@ -188,6 +189,7 @@
             </tbody>
         </table>
     </div>
+
     <style>
         .ngCart.cart span[ng-click] {
             cursor: pointer;
@@ -203,16 +205,18 @@
         <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
 
     </div>
+     <!-- add to cart button -->
     <div ng-show="attrs.id">
+
         <div ng-hide="inCart()">
-            <a class="btn btn-lg btn-primary"
+            <a class="btn btn btn-primary"
                ng-click="ngCart.addItem(id, name, price, quantity, data)"
                ng-transclude></a>
         </div>
-        <div class="alert alert-info"  ng-show="inCart()">
+        <div class="btn alert-info"  ng-show="inCart()">
             This item is in your cart
         </div>
-
+        <h3></h3>
     </div>
     </script>
 
