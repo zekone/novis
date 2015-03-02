@@ -25,8 +25,6 @@ angular.module('yoNovisApp')
 
           query.find({
             success : function(res){
-            //  defer.resolve(res);
-
               var products = Parse.Object.extend("products");
               var query = new Parse.Query(products);
 
@@ -36,8 +34,9 @@ angular.module('yoNovisApp')
                 success : function(r){
                   console.log(r);
                   defer.resolve(r);
+                  //here we got the products in the category we got in the previous .find()
                 }
-              })
+              });
 
             }
           });
@@ -60,7 +59,23 @@ angular.module('yoNovisApp')
           });
 
           return defer.promise;
+        },
+        getProductSizes: function(id) {
+          var defer = $q.defer();
+
+          var products = Parse.Object.extend("product_sizes");
+          var query = new Parse.Query(products);
+
+          query.equalTo("prod_id", id);
+          query.find({
+            success: function(res){
+              console.log(res);
+              defer.resolve(res);
+            }
+          });
+          return defer.promise;
         }
+
 
       };
     return products;

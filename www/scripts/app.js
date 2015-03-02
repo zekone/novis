@@ -20,13 +20,16 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'angularParse'
+    'angularParse',
+    'ngCart'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        label: "home"
+
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -34,11 +37,15 @@ angular
       })
       .when('/category/:catID', {
         templateUrl: 'views/category.html',
-        controller: 'CategoryCtrl'
+        controller: 'CategoryCtrl',
+        label: "category"
+
       })
       .when('/product/:prodID', {
         templateUrl: 'views/product.html',
-        controller: 'ProductCtrl'
+        controller: 'ProductCtrl',
+        label: "Product"
+
       })
 
 

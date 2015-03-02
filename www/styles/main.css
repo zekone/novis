@@ -1,7 +1,28 @@
 html, body, *{
   font-family: "Open Sans" !important;
-  color: #444 !important;
+  color: #444;
 }
+
+.site-title{
+  /*position: absolute;*/
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  padding: 20px;
+  /*margin: 0 10px;*/
+  min-width: 30px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 44px;
+}
+.site-title a, .site-title a:hover, .site-title a:focus{
+  text-decoration: none;
+}
+
 
 .thin{
   font-weight: 100 !important;
@@ -14,11 +35,15 @@ a, a:focus, a:active, a:hover{
 .card-product{
   float: left;
   text-align:center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);*/
   border-radius: 0px;
 }
-.card-product > a:hover{
-
+.card-product:hover{
+  transition: 0.3s all;
+  box-shadow: 0 5px 25px -10px rgba(0, 0, 0, 0.1);
+}
+.card-product > a, .card-product > a:hover{
+  text-decoration: none;
 }
 .prod-img{
   width: 100%;

@@ -16,7 +16,7 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="http://code.ionicframework.com/1.0.0-beta.14/css/ionic.css">
+    <!-- <link rel="stylesheet" href="http://code.ionicframework.com/1.0.0-beta.14/css/ionic.css"> -->
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 
@@ -26,7 +26,7 @@
 
 
   </head>
-  <body ng-app="yoNovisApp">
+  <body ng-app="yoNovisApp" >
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -34,19 +34,21 @@
 
 
     <!-- header -->
-    <div class="bar bar-header">
-      <!-- <button class="button button-icon icon ion-navicon"></button> -->
+    <!-- <div class="bar bar-header">
+      <button class="button button-icon icon ion-navicon"></button>
       <div class="h1 title"><a href="#/">NOVIS</a></div>
-      <button class="button button-clear button-dark">cart</button>
+
+
+      <button class="button button-clear button-dark">Cart</button>
+    </div> -->
+
+    <div class="container">
+      <div class="site-title"><a href="#/">NOVIS</a></div>
     </div>
 
 
-
-
-
-
     <!-- view -->
-    <div class="container"><br><br><br>
+    <div class="container">
       <div ng-controller="NavCtrl" ng-include="'/partials/nav.html'"></div>
 
     <div ng-view=""></div>
@@ -82,6 +84,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
+    <script src="bower_components/ngcart/dist/ngCart.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -98,10 +102,119 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-touch.min.js"></script>
 
 
-
     <script src="//www.parsecdn.com/js/parse-1.3.5.min.js"></script>
     <script src="https://rawgithub.com/felipesabino/angular-parse/0.1.0/angularparse.js"></script>
 
+
+
+
+    <script  type="text/ng-template" id="template/ngCart/summary.html">
+        <div class="row">
+        <div class="col-md-6 text-right">
+            <svg version="1.1"  class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" xml:space="preserve">
+    			<path d="M27.715,10.48l-2.938,6.312c-0.082,0.264-0.477,0.968-1.318,0.968H11.831
+    				c-0.89,0-1.479-0.638-1.602-0.904l-2.048-6.524C7.629,8.514,8.715,7.933,9.462,7.933c0.748,0,14.915,0,16.805,0
+    				C27.947,7.933,28.17,9.389,27.715,10.48L27.715,10.48z M9.736,9.619c0.01,0.061,0.026,0.137,0.056,0.226l1.742,6.208
+    				c0.026,0.017,0.058,0.028,0.089,0.028h11.629l2.92-6.27c0.025-0.073,0.045-0.137,0.053-0.192H9.736L9.736,9.619z M13.544,25.534
+    				c-0.819,0-1.482-0.662-1.482-1.482s0.663-1.484,1.482-1.484c0.824,0,1.486,0.664,1.486,1.484S14.369,25.534,13.544,25.534
+    				L13.544,25.534z M23.375,25.534c-0.82,0-1.482-0.662-1.482-1.482s0.662-1.484,1.482-1.484c0.822,0,1.486,0.664,1.486,1.484
+    				S24.197,25.534,23.375,25.534L23.375,25.534z M24.576,21.575H13.965c-2.274,0-3.179-2.151-3.219-2.244
+    				c-0.012-0.024-0.021-0.053-0.028-0.076c0,0-3.56-12.118-3.834-13.05c-0.26-0.881-0.477-1.007-1.146-1.007H2.9
+    				c-0.455,0-0.82-0.364-0.82-0.818s0.365-0.82,0.82-0.82h2.841c1.827,0,2.4,1.103,2.715,2.181
+    				c0.264,0.898,3.569,12.146,3.821,12.999c0.087,0.188,0.611,1.197,1.688,1.197h10.611c0.451,0,0.818,0.368,0.818,0.818
+    				C25.395,21.21,25.027,21.575,24.576,21.575L24.576,21.575z"/>
+    </svg>
+        </div>
+        <div class="col-md-6">{{ ngCart.totalItems() }}
+            <ng-pluralize count="ngCart.totalItems()" when="{1: 'item', 'other':'items'}"></ng-pluralize>
+            <br />{{ ngCart.totalCost() | currency }}
+        </div>
+    </div>
+    </script>
+
+
+    <script type="text/ng-template" id="template/ngCart/cart.html">
+      <div class="alert alert-warning" role="alert" ng-show="ngCart.totalItems() === 0">
+        Your cart is empty
+    </div>
+
+    <div class="table-responsive col-lg-12" ng-show="ngCart.totalItems() > 0">
+
+        <table class="table table-striped ngCart cart">
+
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr ng-show="ngCart.getTax()">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Tax ({{ ngCart.getCart().tax }}%):</th>
+                <th>{{ ngCart.getTax() | currency }}</th>
+            </tr>
+            <tr ng-show="ngCart.getShipping()">
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Shipping:</th>
+                <th>{{ ngCart.getShipping() | currency }}</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total:</th>
+                <th>{{ ngCart.totalCost() | currency }}</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr ng-repeat="item in ngCart.getCart().items track by $index">
+                <td><span ng-click="ngCart.removeItem($index)" class="glyphicon glyphicon-remove"></span></td>
+                <td>{{ item.getName() }}</td>
+                <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
+                          ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
+                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-plus" ng-click="item.setQuantity(1, true)"></span></td>
+                <td>{{ item.getPrice() | currency}}</td>
+                <td>{{ item.getTotal() | currency }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <style>
+        .ngCart.cart span[ng-click] {
+            cursor: pointer;
+        }
+        .ngCart.cart .glyphicon.disabled {
+            color:#aaa;
+        }
+    </style>
+    </script>
+
+    <script type="text/ng-template" id="template/ngCart/addtocart.html">
+        <div ng-hide="attrs.id">
+        <a class="btn btn-lg btn-primary" ng-disabled="true" ng-transclude></a>
+
+    </div>
+    <div ng-show="attrs.id">
+        <div ng-hide="inCart()">
+            <a class="btn btn-lg btn-primary"
+               ng-click="ngCart.addItem(id, name, price, quantity, data)"
+               ng-transclude></a>
+        </div>
+        <div class="alert alert-info"  ng-show="inCart()">
+            This item is in your cart
+        </div>
+
+    </div>
+    </script>
 
 
 
