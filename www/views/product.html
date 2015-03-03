@@ -8,7 +8,10 @@
 		<div class="col-md-4 column">
 
 
-      <img src="{{item.image}}" class="thumbnail"/>
+      <!-- <img src="{{item.image}}" class="thumbnail"/> -->
+
+      <div nov-image></div>
+
 		</div>
 		<div class="col-md-8 column">
 			<div class="panel panel-default">
@@ -25,11 +28,10 @@
             </option>
           </select>
           <br><br>
-          <button class="btn btn-lg btn-info">
+
+          <ngcart-addtocart id="{{item.id}}" name="{{item.title}}" price="{{item.price}}" quantity="1" quantity-max="30" data="item">
             Add to Cart
-          </button>
-          {{item.id}}
-          <ngcart-addtocart id="{{item.id}}" name="{{item.title}}" price="{{item.price}}" quantity="1" quantity-max="30" data="item"></ngcart-addtocart>
+          </ngcart-addtocart>
 
           <br><br>
 					{{item.desc}}
@@ -40,10 +42,3 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-  <h3>Cart (ngcart-cart)</h3>
-     <ngcart-cart> </ngcart-cart>

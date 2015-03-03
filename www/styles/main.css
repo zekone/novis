@@ -84,3 +84,11 @@ a, a:focus, a:active, a:hover{
 .cart.show{
   display: block;
 }
+
+
+.img-preview{
+  width: 30px;
+  display: inline;
+  margin-right: 10px;
+  cursor: pointer;
+}

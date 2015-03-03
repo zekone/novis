@@ -27,5 +27,7 @@ angular.module('yoNovisApp')
     ngCart.setShipping(2.99);
     console.log (ngCart);
 
-
+    $scope.focusImage = function(src){
+      $('.img-large').attr('src', src);
+    };
 });

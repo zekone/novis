@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 
- Parse.initialize("1j0E51dRpLZBq2NhkYgxX87Cqxa2hPihxz4BMOQ1", "BbW4ni8kpXCauNMqWgI86ec7Exqq4AAeTqoPuEiy");
+Parse.initialize("1j0E51dRpLZBq2NhkYgxX87Cqxa2hPihxz4BMOQ1", "BbW4ni8kpXCauNMqWgI86ec7Exqq4AAeTqoPuEiy");
 
 
 angular
@@ -65,6 +65,14 @@ angular
     };
   })
 
+  .directive('novImage', function(){
+    return {
+      scope: true,  // use a child scope that inherits from parent
+      restrict: 'A',
+      
+      templateUrl: 'partials/images.html'
+    };
+  })
 
 
   ;
