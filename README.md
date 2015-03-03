@@ -12,7 +12,7 @@ version 0.11.1.
 
 
 - ~~abstract product cards into directive~~
-- ~~add Cart partial and ctrl to nav bar; some dropdown to show cart summary ~~
+- add Cart partial and ctrl to nav bar; some dropdown to show cart summary
 - ADD SIZING OPTIONS TO CART
 - ~~image switcher~~
 - ~~MAKE “ADD TO CART” BTN AND “ITEM IN CART” ALERT SAME SIZE (cards same size) ~~
