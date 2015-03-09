@@ -15,7 +15,11 @@
 
 
 
-<div><a href="#/account/login-register" style="margin-top:24px;">Account</a></div>
+<a href="#/account" style="margin-top:24px; display:block;">
+
+<div ng-hide="currentUser">Account</div>
+<div ng-show="currentUser">{{currentUser.attributes.username}}</div>
+</a>
 
 
 <hr style="clear: both;">

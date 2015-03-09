@@ -62,6 +62,7 @@ angular
      $scope.logOut = function(form) {
        Parse.User.logOut();
        $scope.currentUser = null;
+       $scope.$apply();
      };
 
 
@@ -95,7 +96,7 @@ angular
         label: "Product"
 
       })
-      .when('/account/login-register', {
+      .when('/account', {
         templateUrl: 'views/login-reg.html',
         controller: 'LoginregCtrl'
       })
