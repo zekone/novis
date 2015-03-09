@@ -23,6 +23,54 @@ angular
     'angularParse',
     'ngCart'
   ])
+
+  .run(['$rootScope', function($scope) {
+     //parse login
+
+     $scope.currentUser = Parse.User.current();
+
+     $scope.signUp = function(form) {
+       var user = new Parse.User();
+       user.set("email", form.email);
+       user.set("username", form.username);
+       user.set("password", form.password);
+
+       user.signUp(null, {
+         success: function(user) {
+           $scope.currentUser = user;
+           $scope.$apply();
+         },
+         error: function(user, error) {
+           alert("Unable to sign up:  " + error.code + " " + error.message);
+         }
+       });
+     };
+
+     $scope.logIn = function(form) {
+       Parse.User.logIn(form.username, form.password, {
+         success: function(user) {
+           $scope.currentUser = user;
+           $scope.$apply();
+         },
+         error: function(user, error) {
+           alert("Unable to log in: " + error.code + " " + error.message);
+
+         }
+       });
+     };
+
+     $scope.logOut = function(form) {
+       Parse.User.logOut();
+       $scope.currentUser = null;
+     };
+
+
+
+     $(".spinner").hide();
+  }])
+
+
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -47,7 +95,10 @@ angular
         label: "Product"
 
       })
-
+      .when('/account/login-register', {
+        templateUrl: 'views/login-reg.html',
+        controller: 'LoginregCtrl'
+      })
 
       .otherwise({
         redirectTo: '/'
@@ -69,7 +120,7 @@ angular
     return {
       scope: true,  // use a child scope that inherits from parent
       restrict: 'A',
-      
+
       templateUrl: 'partials/images.html'
     };
   })

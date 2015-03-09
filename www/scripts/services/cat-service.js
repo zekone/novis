@@ -12,8 +12,10 @@ Parse.initialize("1j0E51dRpLZBq2NhkYgxX87Cqxa2hPihxz4BMOQ1", "BbW4ni8kpXCauNMqWg
 
 angular.module('yoNovisApp')
   .service('catService', function ($q) {
-
+    //show the loader
+    $(".spinner").show();
       var products = {
+
         getCatProducts: function(cat) {
           var defer = $q.defer();
 
@@ -73,11 +75,14 @@ angular.module('yoNovisApp')
               defer.resolve(res);
             }
           });
+          //hide the loader
           return defer.promise;
         }
 
 
       };
+      $(".spinner").hide();
+
     return products;
 
   });

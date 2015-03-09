@@ -24,7 +24,7 @@ angular.module('yoNovisApp')
 
     })
    .then(function(total) {
-
+     $(".spinner").hide();
     }, function(error) {
       alert(JSON.stringify(error));
     });

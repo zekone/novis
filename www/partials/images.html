@@ -4,4 +4,4 @@
 
 
 <img src="{{item.image}}" class="img-preview"  ng-click="focusImage(item.image)" />
-<img src="{{item.image2}}" class="img-preview"  ng-click="focusImage(item.image2)" />
+<img ng-hide="item.image2 == null" src="{{item.image2}}" class="img-preview"  ng-click="focusImage(item.image2)" />
