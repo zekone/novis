@@ -15,6 +15,7 @@ angular.module('yoNovisApp')
         return route === $location.path();
     };
 
+    //$scope.currentUser.username;
 
-    
+
   });
