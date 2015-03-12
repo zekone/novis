@@ -66,13 +66,14 @@ a, a:focus, a:active, a:hover{
 
 .active {
     /*transition: .3s all;*/
-    font-weight:bolder !important;
-    border-bottom: 3px solid grey;
+
+    border-bottom: 2px solid grey;
 }
 
 #opencart{
   text-align:right;
   float:right;
+  padding:0; margin: 0;
 }
 .cart{
   text-align: right;

@@ -77,10 +77,32 @@ angular.module('yoNovisApp')
           });
           //hide the loader
           return defer.promise;
-        }
+        },
 
+
+        getProductInv: function(product) {
+          var defer = $q.defer();
+
+
+          var products = Parse.Object.extend("inventory");
+          var query = new Parse.Query(products);
+
+          query.equalTo("product_id", product);
+
+          query.find({
+            success: function(res){
+              console.log(res);
+              defer.resolve(res);
+            }
+          });
+
+          return defer.promise;
+        },
 
       };
+
+
+
       $(".spinner").hide();
 
     return products;

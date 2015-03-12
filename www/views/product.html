@@ -21,12 +21,17 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-          <b>Size :</b>
-          <select class="item item-select" style="display: inline;">
-            <option ng-repeat="size in sizes">
-              {{size.attributes.size | uppercase}}
-            </option>
-          </select>
+          <div ng-show="sizes.length > 0">
+            <b>Size :</b>
+            <!-- hide if no sizes -->
+            <select  class="item item-select" style="display: inline;">
+              <option ng-repeat="size in sizes">
+                {{size | uppercase}}
+              </option>
+            </select>
+          </div>
+
+          <p ng-show="sizes.length < 1" class="text-muted">NO SIZES AVAILABLE</p>
           <br><br>
 
           <ngcart-addtocart id="{{item.id}}" name="{{item.title}}" price="{{item.price}}" quantity="1" quantity-max="30" data="item">
@@ -42,3 +47,7 @@
 			</div>
 		</div>
 	</div>
+
+
+
+{{inventory[1].attributes.size_id}}

@@ -11,21 +11,51 @@ angular.module('yoNovisApp')
 .controller('ProductCtrl', function ($scope, $routeParams, catService, ngCart) {
   var id = $routeParams.prodID;
 
+  $scope.sizes = [];
 
-  catService.getProduct(id).then(function(d){
-    $scope.item = d.attributes;
-    $scope.item.id = d.id;
+  catService.getProduct(id).then(function(product){
+    $scope.item = product.attributes;
+    $scope.item.id = product.id;
 
-    catService.getProductSizes(d).then(function(a){
-      $scope.sizes = a;
+
+    catService.getProductSizes(product).then(function(a){
+      //$scope.sizes = a;
     });
+
+
+    catService.getProductInv(product).then(function(inv){
+        $scope.inventory = inv;
+
+            for(var i=0; i< inv.length; i++){
+
+              var sizeid = $scope.inventory[i].get("size_id");
+
+              var sizes = Parse.Object.extend("sizes");
+              var query = new Parse.Query(sizes);
+
+              query.ascending("size");
+              query.get(sizeid.id, {
+                  success: function(a){
+                    $scope.sizes.push( a.attributes.size );
+                    $scope.$apply();
+                },
+                  error: function(e){
+
+                }
+              });
+
+            }
+
+    });
+
+
 
   });
 
 
+
     ngCart.setTax(7.5);
     ngCart.setShipping(2.99);
-    console.log (ngCart);
 
     $scope.focusImage = function(src){
       $('.img-large').attr('src', src);
