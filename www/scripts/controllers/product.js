@@ -11,6 +11,8 @@ angular.module('yoNovisApp')
 .controller('ProductCtrl', function ($scope, $routeParams, catService, ngCart) {
   var id = $routeParams.prodID;
 
+  console.log(ngCart.getItems());
+  
   $scope.sizes = [];
 
   catService.getProduct(id).then(function(product){
@@ -53,9 +55,6 @@ angular.module('yoNovisApp')
   });
 
 
-
-    ngCart.setTax(7.5);
-    ngCart.setShipping(2.99);
 
     $scope.focusImage = function(src){
       $('.img-large').attr('src', src);

@@ -1,53 +1,42 @@
-<div ncy-breadcrumb></div>
+<h2>{{item.title}}</h2>
 
+<div class="row clearfix">
+	<div class="col-md-3 column">
 
+    <div nov-image></div>
 
-  <h2>{{item.title}}</h2>
-
-	<div class="row clearfix">
-		<div class="col-md-4 column">
-
-
-      <!-- <img src="{{item.image}}" class="thumbnail"/> -->
-
-      <div nov-image></div>
-
-		</div>
-		<div class="col-md-8 column">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						Description
-					</h3>
-				</div>
-				<div class="panel-body">
-          <div ng-show="sizes.length > 0">
-            <b>Size :</b>
-            <!-- hide if no sizes -->
-            <select  class="item item-select" style="display: inline;">
-              <option ng-repeat="size in sizes">
-                {{size | uppercase}}
-              </option>
-            </select>
-          </div>
-
-          <p ng-show="sizes.length < 1" class="text-muted">NO SIZES AVAILABLE</p>
+	</div>
+	<div class="col-md-9 column">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					Description
+				</h3>
+			</div>
+			<div class="panel-body">
+        <div ng-show="sizes.length > 0">
+          <b>Size :</b>
+          <!-- hide if no sizes -->
+          <select  class="item item-select" style="display: inline;">
+            <option ng-repeat="size in sizes">
+              {{size | uppercase}}
+            </option>
+          </select>
           <br><br>
-
           <ngcart-addtocart id="{{item.id}}" name="{{item.title}}" price="{{item.price}}" quantity="1" quantity-max="30" data="item">
             Add to Cart
           </ngcart-addtocart>
 
-          <br><br>
-					{{item.desc}}
-				</div>
-				<div class="panel-footer">
-					Panel footer
-				</div>
+        </div>
+
+        <p ng-show="sizes.length < 1" class="text-muted">NO SIZES AVAILABLE</p>
+
+        <br><br>
+				{{item.desc}}
+			</div>
+			<div class="panel-footer">
+				Panel footer
 			</div>
 		</div>
 	</div>
-
-
-
-{{inventory[1].attributes.size_id}}
+</div>
