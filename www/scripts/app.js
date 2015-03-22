@@ -101,6 +101,14 @@ angular
         controller: 'LoginregCtrl'
       })
 
+
+      .when('/checkout', {
+        templateUrl: 'views/checkout.html',
+        controller: 'CheckoutCtrl'
+      })
+
+
+
       .otherwise({
         redirectTo: '/'
       });

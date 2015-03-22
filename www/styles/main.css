@@ -75,7 +75,7 @@ a, a:focus, a:active, a:hover{
   float:right;
   padding:0; margin: 0;
 }
-.cart{
+.header-cart{
   text-align: right;
   float:right;
   display: none;
@@ -87,7 +87,7 @@ a, a:focus, a:active, a:hover{
   right: 0;
   z-index: 999;
 }
-.cart.show{
+.header-cart.show{
   display: block;
 }
 

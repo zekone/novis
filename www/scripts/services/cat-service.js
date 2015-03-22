@@ -34,7 +34,6 @@ angular.module('yoNovisApp')
 
               query.find({
                 success : function(r){
-                  console.log(r);
                   defer.resolve(r);
                   //here we got the products in the category we got in the previous .find()
                 }
@@ -71,7 +70,6 @@ angular.module('yoNovisApp')
           query.equalTo("prod_id", id);
           query.find({
             success: function(res){
-              console.log(res);
               defer.resolve(res);
             }
           });
@@ -91,7 +89,6 @@ angular.module('yoNovisApp')
 
           query.find({
             success: function(res){
-              console.log(res);
               defer.resolve(res);
             }
           });

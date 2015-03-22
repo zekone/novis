@@ -12,10 +12,12 @@ angular.module('yoNovisApp')
   var id = $routeParams.prodID;
 
   console.log(ngCart.getItems());
-  
+
   $scope.sizes = [];
+  $scope.related_items = {};
 
   catService.getProduct(id).then(function(product){
+    $scope.product = product;
     $scope.item = product.attributes;
     $scope.item.id = product.id;
 
@@ -38,8 +40,9 @@ angular.module('yoNovisApp')
               query.ascending("size");
               query.get(sizeid.id, {
                   success: function(a){
-                    $scope.sizes.push( a.attributes.size );
+                    $scope.sizes.push( a );
                     $scope.$apply();
+
                 },
                   error: function(e){
 
@@ -48,6 +51,50 @@ angular.module('yoNovisApp')
 
             }
 
+
+    });
+
+    //size change
+    $scope.updateSize = function(size){
+
+      var sizes = Parse.Object.extend("inventory");
+      var query = new Parse.Query(sizes);
+      query.equalTo("product_id", $scope.product);
+      query.equalTo("size_id", size);
+      query.find( {
+        success: function(res){
+          console.log(res);
+          res = res[0];
+
+          $scope.product.size_qt = res.attributes.quantity;
+
+          $scope.product.size = res.attributes.size_id;
+          $scope.inv_id = res.id;
+          $scope.size_name = size.attributes.size;
+          console.log($scope.product.size);
+
+
+          $scope.$apply();
+
+          console.log("quantity: " + res.attributes.quantity);
+        },
+        error: function(e){ console.log(e); }
+      })
+
+    };
+
+
+    //related items
+    var products = Parse.Object.extend("products");
+    var query = new Parse.Query(products);
+    var catid = $scope.item.category;
+
+    query.equalTo("category", catid);
+    query.notEqualTo("objectId", $scope.item.id);
+    query.find({
+      success: function(res){
+        $scope.related_items = res;
+      }
     });
 
 

@@ -16,18 +16,24 @@
 			<div class="panel-body">
         <div ng-show="sizes.length > 0">
           <b>Size :</b>
+
           <!-- hide if no sizes -->
-          <select  class="item item-select" style="display: inline;">
-            <option ng-repeat="size in sizes">
+          <select  class="item item-select" style="display: inline;" ng-model="sz"
+					ng-options="size.attributes.size for size in sizes"
+					ng-change = "updateSize(sz)"
+					 >
+            <!-- <option ng-repeat="size in sizes">
               {{size | uppercase}}
-            </option>
+            </option> -->
           </select>
           <br><br>
-          <ngcart-addtocart id="{{item.id}}" name="{{item.title}}" price="{{item.price}}" quantity="1" quantity-max="30" data="item">
+          <ngcart-addtocart ng-show="product.size" id="{{inv_id}}"  name="{{item.title}} sz {{size_name|limitTo: 1}}" price="{{item.price}}" quantity="1" quantity-max="{{product.size_qt}}" data="item">
             Add to Cart
           </ngcart-addtocart>
 
         </div>
+				{{inv_id}}
+				{{size_name}}
 
         <p ng-show="sizes.length < 1" class="text-muted">NO SIZES AVAILABLE</p>
 
@@ -39,4 +45,10 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+
+
+<div ng-repeat="item in related_items">
+	<a href="#/product/{{item.id}}">{{item.attributes.title}}</a>
 </div>
