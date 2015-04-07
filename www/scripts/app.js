@@ -28,6 +28,8 @@ angular
      //parse login
 
      $scope.currentUser = Parse.User.current();
+  /*
+    $scope.currentUser = Parse.User.current();
 
      $scope.signUp = function(form) {
        var user = new Parse.User();
@@ -38,7 +40,7 @@ angular
        user.signUp(null, {
          success: function(user) {
            $scope.currentUser = user;
-           $scope.$apply();
+          //  $scope.$apply();
          },
          error: function(user, error) {
            alert("Unable to sign up:  " + error.code + " " + error.message);
@@ -50,7 +52,8 @@ angular
        Parse.User.logIn(form.username, form.password, {
          success: function(user) {
            $scope.currentUser = user;
-           $scope.$apply();
+
+          //  $scope.$apply();
          },
          error: function(user, error) {
            alert("Unable to log in: " + error.code + " " + error.message);
@@ -59,12 +62,7 @@ angular
        });
      };
 
-     $scope.logOut = function(form) {
-       Parse.User.logOut();
-       $scope.currentUser = null;
-       $scope.$apply();
-     };
-
+*/
 
 
      $(".spinner").hide();

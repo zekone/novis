@@ -12,5 +12,4 @@ angular.module('yoNovisApp')
 
     $scope.ngCart = ngCart;
 
-
 });

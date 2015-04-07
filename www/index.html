@@ -209,25 +209,6 @@
     </style>
     </script>
 
-    <script type="text/ng-template" id="template/ngCart/addtocart.html">
-        <div ng-hide="attrs.id">
-        <a class="btn btn-lg btn-info" ng-disabled="true" ng-transclude></a>
-
-    </div>
-     <!-- add to cart button -->
-    <div ng-show="attrs.id">
-
-        <div ng-hide="inCart()">
-            <a class="btn btn btn-info"
-               ng-click="ngCart.addItem(id, name, price, quantity, data)"
-               ng-transclude></a>
-        </div>
-        <div class="btn alert-info"  ng-show="inCart()">
-            This item is in your cart
-        </div>
-        <h3></h3>
-    </div>
-    </script>
 
 
 

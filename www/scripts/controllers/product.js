@@ -9,6 +9,7 @@
  */
 angular.module('yoNovisApp')
 .controller('ProductCtrl', function ($scope, $routeParams, catService, ngCart) {
+
   var id = $routeParams.prodID;
 
   console.log(ngCart.getItems());
