@@ -1,0 +1,42 @@
+{
+  "name": "ngCart",
+  "description": "Shopping Cart built for AngularJS",
+  "keywords": [
+    "AngularJS",
+    "module",
+    "directive",
+    "shopping cart",
+    "e-commerce",
+    "cart",
+    "basket",
+    "shopping"
+  ],
+  "authors": {
+    "name": "Dan Shreim",
+    "email": "dan@snapjay.com>",
+    "homepage": "http://www.snapjay.com/"
+  },
+  "version": "0.0.3-rc.2",
+  "homepage": "http://ngcart.snapjay.com",
+  "license": "MIT",
+  "main": "dist/ngCart.js",
+  "private": false,
+  "ignore": [
+    ".travis.yml"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.x"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.2.x"
+  },
+  "_release": "0.0.3-rc.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.3-rc.2",
+    "commit": "4aa972794c4ffd0a83bff3c00250b43783cbe3df"
+  },
+  "_source": "git://github.com/snapjay/ngCart.git",
+  "_target": "~0.0.3-rc.2",
+  "_originalSource": "ngcart"
+}
