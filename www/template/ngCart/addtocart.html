@@ -8,8 +8,8 @@
           ng-click="ngCart.addItem(id, name, price, quantity, data)"
           ng-transclude></a>
    </div>
-   <div class="btn alert-info"  ng-show="inCart()">
-       This item is in your cart
+   <div ng-show="inCart()">
+       <b>This item is in your cart</b>
    </div>
    <h3></h3>
 </div>

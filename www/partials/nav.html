@@ -40,5 +40,12 @@ $(document).ready(function(){
     $('.header-cart').toggleClass("show");
   });
 
+
+  //close the cart when clicking on links
+  $('a').on('click', function(){
+    $(".header-cart").removeClass("show");
+  });
+
+
 });
 </script>

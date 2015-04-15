@@ -53,11 +53,48 @@
         </tbody>
     </table>
 </div>
-<style>
-    .ngCart.cart span[ng-click] {
-        cursor: pointer;
+
+
+<form action="/postTest" method="POST" ng-submit="sub()">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
+    data-image="/img/documentation/checkout/marketplace.png"
+    data-name="Stripe.com"
+    data-description="{{items}}"
+    data-amount="{{ngCart.totalCost() * 100}}">
+  </script>
+  <!-- <input type="hidden" value="{{items}}" name="items"> -->
+
+  <input type="hidden" value="{{items}}" name="items">
+  <input type="hidden" value="{{currentUser}}" name="user">
+
+
+</form>
+
+
+<!-- <button id="customButton">Purchase</button> -->
+
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
+    image: '/img/documentation/checkout/marketplace.png',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
     }
-    .ngCart.cart .glyphicon.disabled {
-        color:#aaa;
-    }
-</style>
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Stripe.com',
+      description: '2 widgets',
+      amount: 2000,
+      closed: sub
+    });
+    e.preventDefault();
+  });
+
+</script>

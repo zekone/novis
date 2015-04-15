@@ -30,10 +30,11 @@
           <ngcart-addtocart ng-show="product.size" id="{{inv_id}}"  name="{{item.title}} sz {{size_name|limitTo: 1}}" price="{{item.price}}" quantity="1" quantity-max="{{product.size_qt}}" data="item">
             Add to Cart
           </ngcart-addtocart>
+					<p class="small" ng-hide="currentUser"><a href="#/account">Log in</a> to add to cart.</p>
 
         </div>
-				{{inv_id}}
-				{{size_name}}
+				<!-- {{inv_id}}
+				{{size_name}} -->
 
         <p ng-show="sizes.length < 1" class="text-muted">NO SIZES AVAILABLE</p>
 
