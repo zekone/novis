@@ -30,6 +30,7 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js',
       'bower_components/ngcart/dist/ngCart.js',
+      'bower_components/angular-underscore-module/angular-underscore-module.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

@@ -1,4 +1,4 @@
-<div class="container col-md-8 col-md-offset-2">
+<div class="container">
 
 <br><br>
 <div ng-hide="currentUser">
@@ -78,9 +78,38 @@
 
 
  <div ng-show="currentUser">
-   <h1>Welcome {{currentUser.get('username')}}</h1>
-   <p> You have been successfully logged in</p>
-   <button class="btn btn-lg btn-success" ng-click="logOut(user)">Log out</button>
+   <div>
+     <p>Welcome, {{currentUser.get('username')}}.
+       <span class="badge" style="cursor: pointer;"><span class="danger glyphicon glyphicon-remove" ng-click="logOut(user)"></span></span>
+     </p>
+   </div>
+
+    <!-- user orders -->
+    <div class="col-lg-6 col-lg-offset-3">
+    <table class="table table-hover">
+      <thead>
+        <th>Date</th>
+        <th>Total Paid</th>
+        <th>Status</th>
+        <th>View</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="orderInfo in orders" ng-class="{
+          warning: orderInfo.attributes.status=='Pending',
+          success: orderInfo.attributes.status=='Completed',
+        }" >
+          <a href="#">
+          <td>{{orderInfo.createdAt | date : short}}</td>
+
+          <td>${{orderInfo.attributes.total}}</td>
+          <td>{{orderInfo.attributes.status}}</td>
+          <td><a href="#/complete/{{orderInfo.id}}">Details</a></td>
+        </a>
+        </tr>
+
+      </tbody>
+    </table>
+    </div>
 
 
 </div>

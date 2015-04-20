@@ -9,6 +9,7 @@
  */
 angular.module('yoNovisApp')
   .controller('CategoryCtrl', function ($scope, $routeParams, catService) {
+
     var id = $routeParams.catID;
 
     $scope.id = id;
@@ -22,6 +23,8 @@ angular.module('yoNovisApp')
 
     catService.getCatProducts(id).then(function(d){
       $scope.items = d;
+      console.log("ITEMS: ");
+      console.log(d);
     })
 
 

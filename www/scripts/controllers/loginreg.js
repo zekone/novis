@@ -8,7 +8,7 @@
  * Controller of the yoNovisApp
  */
 angular.module('yoNovisApp')
-  .controller('LoginregCtrl', function ($scope, ngCart, $rootScope) {
+  .controller('LoginregCtrl', function ($scope, ngCart, $rootScope, catService) {
 
 
     $scope.scenario = "Log in";
@@ -48,7 +48,8 @@ angular.module('yoNovisApp')
          success: function(user) {
            $rootScope.currentUser = user;
 
-           $scope.$apply();
+           getOrders();
+          //  $scope.$apply();
          },
          error: function(user, error) {
            alert("Unable to log in: " + error.code + " " + error.message);
@@ -57,7 +58,16 @@ angular.module('yoNovisApp')
        });
      };
 
+     if ($rootScope.currentUser){
+       getOrders();
+     }
 
+
+      function getOrders(){
+        catService.getUserOrders($rootScope.currentUser.id).then(function(d){
+          $scope.orders = d;
+        });
+      }
 
 
 

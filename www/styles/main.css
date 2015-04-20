@@ -99,6 +99,14 @@ a, a:focus, a:active, a:hover{
   cursor: pointer;
 }
 
+img.media-object{
+  max-width: 85px;
+}
+
+.bold{
+  font-weight: bold;
+}
+
 
 /*LOADER */
 .spinner {

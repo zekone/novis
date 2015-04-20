@@ -1,0 +1,48 @@
+<div class="alert alert-success" role="alert" ng-show="thanks">
+    Thanks for shopping! We've successfully received your order
+</div>
+
+
+<!-- {{orderItems}}
+<br>
+{{order}} -->
+
+
+
+
+<div class="container">
+	<div class="row clearfix">
+
+			<div class="page-header">
+				<h1>
+					{{order.attributes.status}} Order<small>&mdash; #{{order.id}}</small>
+				</h1>
+			</div>
+
+      <br>
+			<div class="media col-lg-8 col-lg-offset-2" ng-repeat="o in orderItems">
+    		 <a href="#" class="pull-left"><img src="{{o.product.attributes.image}}" class="media-object" alt='' /></a>
+				<div class="media-body">
+					<h4 class="media-heading">
+						{{o.product.attributes.title}}
+            <small>&mdash; {{o.size}}</small>
+					</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+          <p class="bold">${{o.product.attributes.price}}</p>
+				</div>
+      <br><br>
+			</div> <!-- end media object -->
+
+
+
+      <!-- shipping section, make scope.shipping -->
+      <!-- shipping section, make scope.shipping
+
+      shipping form on checkout page
+      shipping options and price storage
+      
+      -->
+      <!-- shipping section, make scope.shipping -->
+      <!-- shipping section, make scope.shipping -->
+
+	</div>
+</div>

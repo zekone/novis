@@ -21,7 +21,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularParse',
-    'ngCart'
+    'ngCart',
+    'underscore'
   ])
 
   .run(['$rootScope', function($scope) {
@@ -107,7 +108,7 @@ angular
 
 
 
-      .when('/complete', {
+      .when('/complete/:orderID/:thanks?', {
         templateUrl: 'views/complete.html',
         controller: 'CompleteCtrl'
       })
@@ -140,3 +141,9 @@ angular
 
 
   ;
+
+
+  var underscore = angular.module('underscore', []);
+    underscore.factory('_', function() {
+   return window._; // assumes underscore has already been loaded on the page
+ });
