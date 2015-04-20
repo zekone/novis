@@ -58,7 +58,7 @@ angular.module('yoNovisApp')
 
           }
 
-
+            ngCart.empty();
             window.location.hash = "#/complete/" + r.id + "/thanks";
         },
         error: function(r, error) {
@@ -75,6 +75,6 @@ angular.module('yoNovisApp')
     };
     //close afunc
 
-
+    window.ngCart = ngCart;
 
 });
