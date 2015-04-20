@@ -14,6 +14,16 @@ angular.module('yoNovisApp')
 
     $scope.items = [];
 
+    // $scope.shipping.add1="aa";
+    $scope.shipping = {
+      add1 : "",
+      add2 : "",
+      city : "",
+      zip  : "",
+      state: "",
+      country: ""
+    }
+
     var array = ngCart.getItems();
 
     //adding item titels to a long string
@@ -23,9 +33,8 @@ angular.module('yoNovisApp')
 
 
     $scope.afunc = function(){
-
-      /////
-
+      console.log("SHIPPING");
+      console.log($scope.shipping);
 
       var Order = Parse.Object.extend("order");
       var order = new Order();

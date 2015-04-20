@@ -2,6 +2,9 @@
     Your cart is empty
 </div>
 
+
+<h3><center>Order Details</center></h3><br>
+
 <div class="table-responsive col-lg-12" ng-show="ngCart.getTotalItems() > 0" id="checkout">
 
     <table class="table table-striped ngCart">
@@ -55,18 +58,76 @@
 </div>
 
 
-<!-- <form action="/postTest" method="POST" ng-submit="sub()">
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-image="/img/documentation/checkout/marketplace.png"
-    data-name="Stripe.com"
-    data-description="{{items}}"
-    data-amount="{{ngCart.totalCost() * 100}}">
-  </script>
-  <input type="hidden" value="{{items}}" name="items">
-  <input type="hidden" value="{{currentUser}}" name="user">
-</form> -->
+<!-- shipping -->
+<br><h3><center>Address Details</center></h3><br>
+<form class="form-horizontal" name="addressform" role="form">
+<div class="col-md-4 col-md-offset-2">
+
+      <fieldset>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Line 1</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Address Line 1" ng-model="shipping.add1" class="form-control">
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Address Line 2" ng-model="shipping.add2" class="form-control">
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">City</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="City" ng-model="shipping.city" class="form-control">
+          </div>
+        </div>
+
+      </fieldset>
+  </div>
+  <div class="col-md-4 form-horizontal">
+
+      <fieldset>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">State</label>
+          <div class="col-sm-4">
+            <input type="text" placeholder="State" ng-model="shipping.state" class="form-control">
+          </div>
+
+          <label class="col-sm-2 control-label" for="textinput">Zipcode</label>
+          <div class="col-sm-4">
+            <input type="text" placeholder="Post Code" ng-model="shipping.zip" class="form-control">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Country</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Country" ng-model="shipping.country" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="pull-right">
+
+              <!-- <button type="submit" class="btn btn-primary" >Save</button> -->
+              <!-- <button id="customButton" class="btn btn-primary" ng-class="{disabled: addressform.$valid }" ng-show="ngCart.getTotalItems() > 0">Purchase</button> -->
+
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+  </div><!-- /.col-lg-12 -->
+</form>
+<!-- shipping -->
 
 <button id="customButton" ng-show="ngCart.getTotalItems() > 0">Purchase</button>
 
