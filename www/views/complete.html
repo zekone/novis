@@ -5,11 +5,6 @@
 </div>
 
 
-<!-- {{orderItems}}
-<br>
-{{order}} -->
-
-
 
 
 <div class="container">
@@ -17,7 +12,7 @@
 
 			<div class="page-header">
 				<h1>
-					{{order.attributes.status}} Order<small>&mdash; #{{order.id}}</small>
+					{{order.attributes.status}} Order<small>&mdash; {{order.createdAt | date: short}}</small>
 				</h1>
 			</div>
 
@@ -27,7 +22,7 @@
 				<div class="media-body">
 					<h4 class="media-heading">
 						{{o.product.attributes.title}}
-            <small>&mdash; {{o.size}}</small>
+            <small>&ndash; {{o.size}}</small>
 					</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
           <p class="bold">${{o.product.attributes.price}}</p>
 				</div>
