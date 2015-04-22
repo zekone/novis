@@ -159,3 +159,14 @@ img.media-object{
     -webkit-transform: rotate(-360deg);
   }
 }
+
+
+.highlight {
+  padding: 8px;
+  background: rgb(238, 238, 238);
+}
+
+
+.btn-primary[disabled]{
+    background: rgba(0,0,0,0.4);
+}

@@ -7,17 +7,18 @@
 
 
 
-<div class="container">
+<div class="container col-lg-8 col-lg-offset-2">
 	<div class="row clearfix">
 
-			<div class="page-header">
-				<h1>
+			<div class="">
+				<h1 class="highlight">
 					{{order.attributes.status}} Order<small>&mdash; {{order.createdAt | date: short}}</small>
 				</h1>
 			</div>
 
       <br>
-			<div class="media col-lg-8 col-lg-offset-2" ng-repeat="o in orderItems">
+      <div class="row container-fluid"  ng-repeat="o in orderItems">
+			<div class="media">
     		 <a href="#" class="pull-left"><img src="{{o.product.attributes.image}}" class="media-object" alt='' /></a>
 				<div class="media-body">
 					<h4 class="media-heading">
@@ -26,20 +27,22 @@
 					</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
           <p class="bold">${{o.product.attributes.price}}</p>
 				</div>
-      <br><br>
+      <br><hr style="width: 100%; margin-top: 40px; margin-bottom: 40px; ">
 			</div> <!-- end media object -->
+      </div>
 
 
+      <!-- shipping section -->
+      <div class="row container-fluid">
+        <h4 class="highlight">Shipping</h4>
+        <p><b>Shipping Method: </b> {{order.attributes.ship_method}} - ${{order.attributes.ship_cost}}</p>
+      </div>
+      <div class="row col-lg-6 col-lg-offset-4" ng-show="order.attributes.ship_add1">
+        {{order.attributes.ship_add1}} <span ng-hide="order.attributes.ship_add2 == '' ">- {{order.attributes.ship_add2}}</span><br>
+        {{order.attributes.ship_city}}, {{order.attributes.ship_state}}<br>
+        {{order.attributes.ship_country}}
+      </div>
 
-      <!-- shipping section, make scope.shipping -->
-      <!-- shipping section, make scope.shipping
-
-      shipping form on checkout page
-      shipping options and price storage
-
-      -->
-      <!-- shipping section, make scope.shipping -->
-      <!-- shipping section, make scope.shipping -->
 
 	</div>
 </div>

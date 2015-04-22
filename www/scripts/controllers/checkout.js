@@ -14,10 +14,25 @@ angular.module('yoNovisApp')
 
     $scope.items = [];
 
-    // $scope.shipping.add1="aa";
+
+    $scope.shippingmethods = [];
+
+    var Ship = Parse.Object.extend("shipping");
+    var query = new Parse.Query(Ship);
+    query.find( {
+      success: function(res){
+        console.log(res);
+        for(var i=0; i < res.length; i++)
+          $scope.shippingmethods.push(res[i].attributes);
+
+          $scope.$apply();
+      }
+
+    });
+
     $scope.shipping = {
       add1 : "",
-      add2 : "",
+      add2 : null,
       city : "",
       zip  : "",
       state: "",
@@ -32,6 +47,10 @@ angular.module('yoNovisApp')
     }
 
 
+    $scope.updateShipping = function(ship){
+      ngCart.setShipping(ship.price);
+    };
+
     $scope.afunc = function(){
       console.log("SHIPPING");
       console.log($scope.shipping);
@@ -44,6 +63,20 @@ angular.module('yoNovisApp')
       order.set("status", "Pending");
 
       order.set("total", ngCart.totalCost());
+
+
+      order.set("ship_method", $scope.shippingMethod.shippingOption);
+      order.set("ship_cost", $scope.shippingMethod.price);
+      
+      //setting address
+      order.set("ship_add1", $scope.shipping.add1);
+      order.set("ship_add2", $scope.shipping.add2);
+      order.set("ship_city", $scope.shipping.city);
+      order.set("ship_zip", $scope.shipping.zip);
+      order.set("ship_state", $scope.shipping.state);
+      order.set("ship_country", $scope.shipping.country);
+
+
       order.save(null, {
         success: function(r) {
           // The object was saved successfully.
