@@ -37,7 +37,7 @@
         <h4 class="highlight">Shipping</h4>
         <p><b>Shipping Method: </b> {{order.attributes.ship_method}} - ${{order.attributes.ship_cost}}</p>
       </div>
-      <div class="row col-lg-6 col-lg-offset-4" ng-show="order.attributes.ship_add1">
+      <div class="row col-lg-6" ng-show="order.attributes.ship_add1">
         {{order.attributes.ship_add1}} <span ng-hide="order.attributes.ship_add2 == '' ">- {{order.attributes.ship_add2}}</span><br>
         {{order.attributes.ship_city}}, {{order.attributes.ship_state}}<br>
         {{order.attributes.ship_country}}

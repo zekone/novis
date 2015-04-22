@@ -79,7 +79,7 @@
 
  <div ng-show="currentUser">
    <div>
-     <p>Welcome, {{currentUser.get('username')}}.
+     <p>Welcome, {{currentUser.get('username')}} <span class="text-danger" ng-show="currentUser.attributes.isEmployee">(Employee Mode)</span>.
        <span class="badge" style="cursor: pointer;"><span class="danger glyphicon glyphicon-remove" ng-click="logOut(user)"></span></span>
      </p>
    </div>
@@ -92,18 +92,33 @@
         <th>Total Paid</th>
         <th>Status</th>
         <th>View</th>
+        <th ng-show="currentUser.attributes.isEmployee">Order ID</th>
       </thead>
       <tbody>
         <tr ng-repeat="orderInfo in orders" ng-class="{
           warning: orderInfo.attributes.status=='Pending',
           success: orderInfo.attributes.status=='Completed',
-        }" >
+          info: orderInfo.attributes.status=='Shipped',
+        }" id="{{orderInfo.id}}">
           <a href="#">
           <td>{{orderInfo.createdAt | date : short}}</td>
 
           <td>${{orderInfo.attributes.total}}</td>
-          <td>{{orderInfo.attributes.status}}</td>
+
+          <!-- if not employee, just show status-->
+          <td ng-hide="currentUser.attributes.isEmployee">{{orderInfo.attributes.status}}</td>
+
+          <td ng-show="currentUser.attributes.isEmployee">
+            <select ng-model="orderInfo.attributes.status" ng-change="changeOrderStatus(orderInfo.id, orderInfo.attributes.status)">
+              <option value="Pending">Pending</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </td>
+
           <td><a href="#/complete/{{orderInfo.id}}">Details</a></td>
+
+          <td ng-show="currentUser.attributes.isEmployee">{{orderInfo.id}}</td>
         </a>
         </tr>
 

@@ -31,6 +31,7 @@ angular.module('yoNovisApp')
        user.set("email", form.email);
        user.set("username", form.username);
        user.set("password", form.password);
+       user.set("isEmployee", false);
 
        user.signUp(null, {
          success: function(user) {
@@ -47,9 +48,15 @@ angular.module('yoNovisApp')
        Parse.User.logIn(form.username, form.password, {
          success: function(user) {
            $rootScope.currentUser = user;
+           $rootScope.currentUser.emp = user.attributes.isEmployee;
+           var isEmp = user.attributes.isEmployee;
 
-           getOrders();
-          //  $scope.$apply();
+           if( isEmp ){ //user is employee, show all orders
+             emp_GetAllOrders();
+
+           }else
+            getOrders();
+
          },
          error: function(user, error) {
            alert("Unable to log in: " + error.code + " " + error.message);
@@ -58,9 +65,15 @@ angular.module('yoNovisApp')
        });
      };
 
-     if ($rootScope.currentUser){
-       getOrders();
-     }
+
+     if( $rootScope.currentUser){
+
+       if( $rootScope.currentUser.attributes.isEmployee ){ //user is employee, show all orders
+         emp_GetAllOrders();
+       }else
+        getOrders();
+      }
+
 
 
       function getOrders(){
@@ -69,6 +82,29 @@ angular.module('yoNovisApp')
         });
       }
 
+
+      function emp_GetAllOrders(){
+        catService.emp_GetAllOrders().then(function(d){
+          $scope.orders = d;
+        });
+      }
+
+      $scope.changeOrderStatus = function(id, status){
+        var Order = Parse.Object.extend("order");
+        var query = new Parse.Query(Order);
+
+        query.get(id, {
+          success: function(order){
+            order.set('status', status);
+            order.save();
+            $scope.$apply();
+          },
+          error: function(r,e){
+            alert("Couldn't get order to update!");
+          }
+        });
+
+      }
 
 
   });

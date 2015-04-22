@@ -118,7 +118,6 @@ angular.module('yoNovisApp')
           var User = Parse.Object.extend("User");
 
 
-
           var query = new Parse.Query(User);
 
           query.get(userid, {
@@ -138,7 +137,6 @@ angular.module('yoNovisApp')
 
           return defer.promise;
         },
-
 
         getItemsinOrder: function(id){
           var defer = $q.defer();
@@ -230,7 +228,30 @@ angular.module('yoNovisApp')
 
 
           return defer.promise;
-        }
+        },
+
+
+
+
+        //employee get all orders
+        emp_GetAllOrders: function(){
+          console.log("looking for all orders");
+          var defer = $q.defer();
+
+          var Order = Parse.Object.extend("order");
+          var User = Parse.Object.extend("User");
+
+          var query = new Parse.Query(Order);
+          query.descending("createdAt");
+
+          query.find( {
+            success: function(orders){
+                  defer.resolve(orders);
+                }
+              });
+
+          return defer.promise;
+        },
 
 
       };
