@@ -30,6 +30,11 @@ html, body{
 }
 
 
+.img-large{
+  width: 100%;
+}
+
+
 .thin{
   font-weight: 100 !important;
 }

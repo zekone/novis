@@ -38,7 +38,7 @@ angular.module('yoNovisApp')
               var sizes = Parse.Object.extend("sizes");
               var query = new Parse.Query(sizes);
 
-              query.ascending("size");
+              query.descending("size");
               query.get(sizeid.id, {
                   success: function(a){
                     $scope.sizes.push( a );

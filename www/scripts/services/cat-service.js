@@ -67,6 +67,8 @@ angular.module('yoNovisApp')
           var products = Parse.Object.extend("product_sizes");
           var query = new Parse.Query(products);
 
+
+          query.ascending("size");
           query.equalTo("prod_id", id);
           query.find({
             success: function(res){
