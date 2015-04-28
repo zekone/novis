@@ -19,10 +19,10 @@
       <br>
       <div class="row container-fluid"  ng-repeat="o in orderItems">
 			<div class="media">
-    		 <a href="#" class="pull-left"><img src="{{o.product.attributes.image}}" class="media-object" alt='' /></a>
+    		 <a href="#/product/{{o.product.id}}" class="pull-left"><img src="{{o.product.attributes.image}}" class="media-object" alt='' /></a>
 				<div class="media-body">
 					<h4 class="media-heading">
-						{{o.product.attributes.title}}
+            <a href="#/product/{{o.product.id}}">	{{o.product.attributes.title}}</a>
             <small>&ndash; {{o.size}}</small>
 					</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
           <p class="bold">${{o.product.attributes.price}}</p>

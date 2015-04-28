@@ -57,7 +57,8 @@ a, a:focus, a:active, a:hover{
   text-decoration: none;
 }
 .prod-img{
-  width: 100%;
+  max-height: 325px;
+  
 }
 
 .categories > *{

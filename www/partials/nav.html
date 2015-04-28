@@ -1,9 +1,10 @@
 <div class="text-center">
   <ul class="list-inline categories">
-    <li ng-class="{active:isActive('/category/1')}"><a href="#/category/1">TOPS</a></li>
-    <li ng-class="{active:isActive('/category/2')}"><a href="#/category/2">BOTTOMS</a></li>
-    <li ng-class="{active:isActive('/category/3')}"><a href="#/category/3">SHOES</a></li>
-    <li ng-class="{active:isActive('/category/4')}"><a href="#/category/4">ACCESSORIES</a></li>
+    <li ng-repeat="cat in categories" ng-class="{active:isActive('/category/{{cat.attributes.cat_id}}')}">
+      <a href="#/category/{{cat.attributes.cat_id}}">
+        {{cat.attributes.name | uppercase }}
+      </a>
+    </li>
   </ul>
 </div>
 

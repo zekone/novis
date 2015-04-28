@@ -1,21 +1,22 @@
 'use strict';
-
-/**
- * @ngdoc function
- * @name yoNovisApp.controller:NavCtrl
- * @description
- * # NavCtrl
- * Controller of the yoNovisApp
- */
 angular.module('yoNovisApp')
   .controller('NavCtrl', function ($scope, $location) {
-    $scope.test = "TEST";
 
     $scope.isActive = function(route) {
         return route === $location.path();
     };
 
-    //$scope.currentUser.username;
+    var categories = Parse.Object.extend("categories");
+    var query = new Parse.Query(categories);
 
+    query.find({
+      success: function(res){
+        $scope.categories = res;
+        console.log(res);
+        $scope.$apply();
+      }, error: function(e,r){
+        console.log(e);
+      }
+    })
 
   });

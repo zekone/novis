@@ -90,6 +90,8 @@ angular.module('yoNovisApp')
     var query = new Parse.Query(products);
     var catid = $scope.item.category;
 
+    query.limit(4);
+
     query.equalTo("category", catid);
     query.notEqualTo("objectId", $scope.item.id);
     query.find({
