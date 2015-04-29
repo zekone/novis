@@ -58,7 +58,7 @@ a, a:focus, a:active, a:hover{
 }
 .prod-img{
   max-height: 325px;
-  
+
 }
 
 .categories > *{
@@ -190,4 +190,10 @@ img.media-object{
 
 .no-margin{
   margin-bottom:0;
+}
+
+
+input.ng-invalid, select.ng-invalid{
+  border-color: red;
+  color: red;
 }

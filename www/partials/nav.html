@@ -1,3 +1,4 @@
+
 <div class="text-center">
   <ul class="list-inline categories">
     <li ng-repeat="cat in categories" ng-class="{active:isActive('/category/{{cat.attributes.cat_id}}')}">
@@ -5,10 +6,12 @@
         {{cat.attributes.name | uppercase }}
       </a>
     </li>
+
+    <li><a href="#/about">ABOUT</a></li>
   </ul>
 </div>
 
-
+<div class="links">
 <div id="opencart" class="btn">
 
   <ngcart-summary></ngcart-summary>
@@ -23,7 +26,11 @@
 </a>
 
 
+</div><!-- links -->
+
 <hr style="clear: both;">
+
+
 
 <div class="container-fluid" style="position:relative;">
 <div class="header-cart">

@@ -57,7 +57,9 @@
 
         <tr><td></td><td></td><td></td>
           <td>Shipping Method:</td>
-          <td><select ng-model="shippingMethod" ng-change="updateShipping(shippingMethod)" required ng-options="method as method.shippingOption for method in shippingmethods"></select></td>
+          <td><select ng-model="shippingMethod" ng-change="updateShipping(shippingMethod)" required ng-options="method as method.shippingOption for method in shippingmethods"></select>
+            <span class="text-danger bold" style="position:absolute;" ng-show="!shippingMethod">&nbsp;Select service</span>
+          </td>
 
         </tr>
 
@@ -81,7 +83,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">Line 1</label>
           <div class="col-sm-10">
-            <input type="text" placeholder="Address Line 1" ng-model="shipping.add1" required class="form-control">
+            <input type="text" placeholder="Address Line 1" ng-model="shipping.add1" required class="form-control" >
           </div>
         </div>
 
@@ -97,7 +99,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">City</label>
           <div class="col-sm-10">
-            <input type="text" placeholder="City" ng-model="shipping.city" class="form-control">
+            <input type="text" placeholder="City" ng-model="shipping.city" required class="form-control">
           </div>
         </div>
 
@@ -109,12 +111,12 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">State</label>
           <div class="col-sm-4">
-            <input type="text" placeholder="State" ng-model="shipping.state" class="form-control">
+            <input type="text" placeholder="State" ng-model="shipping.state" required class="form-control">
           </div>
 
           <label class="col-sm-2 control-label" for="textinput">Zipcode</label>
           <div class="col-sm-4">
-            <input type="text" placeholder="Post Code" ng-model="shipping.zip" class="form-control">
+            <input type="text" placeholder="Post Code" ng-model="shipping.zip" required class="form-control">
           </div>
         </div>
 
@@ -122,7 +124,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">Country</label>
           <div class="col-sm-10">
-            <input type="text" placeholder="Country" ng-model="shipping.country" class="form-control">
+            <input type="text" placeholder="Country" ng-model="shipping.country" required class="form-control">
           </div>
         </div>
 
@@ -135,6 +137,14 @@
 
             </div>
           </div>
+        </div>
+
+
+
+        <div class="checkbox" ng-show="currentUser.attributes.isEmployee">
+          <label>
+            <input type="checkbox" ng-model="phone"> Phone Order
+          </label>
         </div>
 
       </fieldset>

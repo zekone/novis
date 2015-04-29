@@ -14,11 +14,13 @@ angular.module('yoNovisApp')
 
     $scope.items = [];
 
+    $scope.phone = false;
 
     $scope.shippingmethods = [];
 
     var Ship = Parse.Object.extend("shipping");
     var query = new Parse.Query(Ship);
+    query.ascending("price");
     query.find( {
       success: function(res){
         console.log(res);
@@ -50,6 +52,8 @@ angular.module('yoNovisApp')
     $scope.updateShipping = function(ship){
       ngCart.setShipping(ship.price);
     };
+    console.log("ITEMS : " );
+    console.log($scope.items);
 
     $scope.afunc = function(){
       console.log("SHIPPING");
@@ -67,7 +71,7 @@ angular.module('yoNovisApp')
 
       order.set("ship_method", $scope.shippingMethod.shippingOption);
       order.set("ship_cost", $scope.shippingMethod.price);
-      
+
       //setting address
       order.set("ship_add1", $scope.shipping.add1);
       order.set("ship_add2", $scope.shipping.add2);
@@ -76,6 +80,8 @@ angular.module('yoNovisApp')
       order.set("ship_state", $scope.shipping.state);
       order.set("ship_country", $scope.shipping.country);
 
+
+      order.set("phone_order", $scope.phone);
 
       order.save(null, {
         success: function(r) {
@@ -90,11 +96,17 @@ angular.module('yoNovisApp')
             var query = new Parse.Query(inventory);
 
             query.get( item['_id'] ).then(function(it){
+              //update the quantity by amount ordered
+              it.set("quantity", it.attributes.quantity - item['_quantity']);
+              it.save();
+
+              //saving each ordered item
               var OrderedItem = Parse.Object.extend("orderedItem");
               var ordereditem = new OrderedItem();
 
               ordereditem.set("order_id", r);
               ordereditem.set("inventory_id", it);
+              ordereditem.set("quantity", item['_quantity']);
               return ordereditem.save();
             });
 
