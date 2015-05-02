@@ -99,6 +99,7 @@
           warning: orderInfo.attributes.status=='Pending',
           success: orderInfo.attributes.status=='Completed',
           info: orderInfo.attributes.status=='Shipped',
+          danger: orderInfo.attributes.status=='Canceled',
         }" id="{{orderInfo.id}}">
           <a href="#">
           <td>{{orderInfo.createdAt | date : short}}</td>
@@ -113,12 +114,17 @@
               <option value="Pending">Pending</option>
               <option value="Shipped">Shipped</option>
               <option value="Completed">Completed</option>
+              <option value="Canceled">Canceled</option>
             </select>
           </td>
 
           <td><a href="#/complete/{{orderInfo.id}}">Details</a></td>
 
-          <td ng-show="currentUser.attributes.isEmployee">{{orderInfo.id}}</td>
+          <td ng-show="currentUser.attributes.isEmployee">
+            <!-- show phone icon if it's a phone order -->
+            <span class="glyphicon glyphicon-earphone" ng-show="orderInfo.attributes.phone_order"></span>
+            {{orderInfo.id}}
+          </td>
         </a>
         </tr>
 

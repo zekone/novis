@@ -46,6 +46,8 @@ angular.module('yoNovisApp')
   query.get(id).then(function(order) {
     $scope.order = order;
 
+    
+
     query = new Parse.Query(OrderItem);
     query.equalTo("order_id", order);
 
@@ -68,7 +70,7 @@ angular.module('yoNovisApp')
                 success: function(r){
                   console.log(r);
                   $scope.orderItems[index].product = r;
-                  $timeout( function(){$scope.$apply();}, 100);
+                  $timeout( function(){$scope.$apply();}, 220);
                 }
               })
 
