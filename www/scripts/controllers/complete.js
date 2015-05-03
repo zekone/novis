@@ -46,8 +46,6 @@ angular.module('yoNovisApp')
   query.get(id).then(function(order) {
     $scope.order = order;
 
-    
-
     query = new Parse.Query(OrderItem);
     query.equalTo("order_id", order);
 

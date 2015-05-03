@@ -32,6 +32,8 @@ angular.module('yoNovisApp')
 
     });
 
+    console.log(ngCart);
+
     $scope.shipping = {
       add1 : "",
       add2 : null,
