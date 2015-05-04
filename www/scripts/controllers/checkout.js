@@ -35,13 +35,16 @@ angular.module('yoNovisApp')
     console.log(ngCart);
 
     $scope.shipping = {
+      name : "",
       add1 : "",
       add2 : null,
       city : "",
       zip  : "",
       state: "",
-      country: ""
-    }
+      country: "",
+      phone: ""
+
+    };
 
     var array = ngCart.getItems();
 
@@ -75,6 +78,7 @@ angular.module('yoNovisApp')
       order.set("ship_cost", $scope.shippingMethod.price);
 
       //setting address
+      order.set("ship_name", $scope.shipping.name);
       order.set("ship_add1", $scope.shipping.add1);
       order.set("ship_add2", $scope.shipping.add2);
       order.set("ship_city", $scope.shipping.city);
@@ -84,6 +88,9 @@ angular.module('yoNovisApp')
 
 
       order.set("phone_order", $scope.phone);
+
+      order.set("ship_phone", $scope.shipping.phone);
+      
 
       order.save(null, {
         success: function(r) {

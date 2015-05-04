@@ -39,7 +39,14 @@ angular.module('yoNovisApp')
            $scope.$apply();
          },
          error: function(user, error) {
-           alert("Unable to sign up:  " + error.code + " " + error.message);
+           //alert("Unable to sign up:  " + error.code + " " + error.message);
+           $(".signup-form").prepend(
+           "<div class='alert alert-danger alert-dismissible col-lg-8 col-lg-offset-2' role='alert'>\
+           <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>\
+           <strong>Couldn't sign up. </strong>"
+           + error.message
+           );
+
          }
        });
      };
@@ -59,7 +66,12 @@ angular.module('yoNovisApp')
 
          },
          error: function(user, error) {
-           alert("Unable to log in: " + error.code + " " + error.message);
+          //  alert("Unable to log in: " + error.code + " " + error.message);
+          $(".login-form").prepend(
+          "<div class='alert alert-danger alert-dismissible col-lg-8 col-lg-offset-2' role='alert'>\
+          <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>\
+          <strong>Couldn't log in. Check your username and password.</strong></div>"
+          );
 
          }
        });
@@ -105,6 +117,13 @@ angular.module('yoNovisApp')
         });
 
       }
+
+
+
+      $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      })
 
 
   });

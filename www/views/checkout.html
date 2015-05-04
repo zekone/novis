@@ -45,7 +45,9 @@
         <tr ng-repeat="item in ngCart.getCart().items track by $index">
             <td><span ng-click="ngCart.removeItemById(item.getId())" class="glyphicon glyphicon-remove"></span></td>
 
-            <td>{{ item.getName() }}</td>
+            <td><a href="#/product/{{item.getData()['id']}}">
+              <img src="{{ item.getData()['image'] }}" class="cart-img">{{item.getName()}}
+            </a></td>
             <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
                       ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
                 {{ item.getQuantity() | number }}&nbsp;&nbsp;
@@ -80,6 +82,16 @@
 <div class="col-md-4 col-md-offset-2">
 
       <fieldset>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Name</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Name" ng-model="shipping.name" required class="form-control" >
+          </div>
+        </div>
+
+
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">Line 1</label>
           <div class="col-sm-10">
@@ -108,6 +120,8 @@
   <div class="col-md-4 form-horizontal">
 
       <fieldset>
+
+
         <div class="form-group">
           <label class="col-sm-2 control-label" for="textinput">State</label>
           <div class="col-sm-4">
@@ -128,23 +142,16 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="pull-right">
-
-              <!-- <button type="submit" class="btn btn-primary" >Save</butto n> -->
-              <!-- <button id="customButton" class="btn btn-primary" ng-class="{disabled: addressform.$valid }" ng-show="ngCart.getTotalItems() > 0">Purchase</button> -->
-
-            </div>
-          </div>
-        </div>
-
-
 
         <div class="checkbox" ng-show="currentUser.attributes.isEmployee">
           <label>
             <input type="checkbox" ng-model="phone"> Phone Order
           </label>
+
+        <label>
+          <input type="text" placeholder="Phone" ng-model="shipping.phone" class="form-control">
+        </label>
+
         </div>
 
       </fieldset>
@@ -153,6 +160,8 @@
 </form>
 <!-- shipping -->
 </div>
+
+<br>
 
 <div class="col-md-8 col-md-offset-2">
   <button id="customButton" class="pull-right btn btn-primary" ng-show="ngCart.getTotalItems() > 0" ng-disabled="addressform.$invalid || !shippingMethod">Purchase</button>
@@ -164,7 +173,7 @@
 <script>
   var handler = StripeCheckout.configure({
     key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-    image: '/img/documentation/checkout/marketplace.png',
+    image: 'http://i.imgur.com/wdlW2V7.jpg',
     token: function(token) {
       // Use the token to create the charge with a server-side script.
       // You can access the token ID with `token.id`

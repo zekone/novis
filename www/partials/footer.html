@@ -4,14 +4,14 @@
   <div class="container">
     <div class="navbar col-lg-4 col-md-4 col-sm-4 col-xs-4 no-margin">
     <b>CATEGORIES</b>
-    <ul class="list-unstyled no-margin">
-      <li><a href="#/category/1">TOPS</a></li>
-      <li><a href="#/category/2">BOTTOMS</a></li>
-      <li><a href="#/category/3">SHOES</a></li>
-      <li><a href="#/category/4">ACCESSORIES</a></li>
+    <ul class="list-unstyled no-margin" ng-controller="NavCtrl">
+      <li ng-repeat="cat in categories" >
+        <a href="#/category/{{cat.attributes.cat_id}}">
+          {{cat.attributes.name | uppercase }}
+        </a>
+      </li>
     </ul>
     </div>
-
 
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
       <ul class="list-unstyled no-margin">

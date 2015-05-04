@@ -41,8 +41,6 @@ angular.module('yoNovisApp')
   var Order = Parse.Object.extend("order");
   var query = new Parse.Query(Order);
 
-
-
   query.get(id).then(function(order) {
     $scope.order = order;
 
@@ -90,17 +88,29 @@ angular.module('yoNovisApp')
             }
 
           });
-
-
-
       });
+    });
+  });
+  //end query
 
 
+  $scope.cancelOrder = function(order){
+    var Order = Parse.Object.extend("order");
+    var query = new Parse.Query(Order);
 
+    query.get(order.id).then(function(o) {
+      o.set('status', 'Canceled');
+      o.save({
+        success: function(r){
+          $(".alerts-top").prepend('<div class="alert alert-success" role="alert" >Successfully canceled the order.</div>');
+        },
+        error: function(e,r){
+
+        }
+      });
     });
 
-
-  });
+  }
 
 
 

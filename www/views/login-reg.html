@@ -3,7 +3,7 @@
 <br><br>
 <div ng-hide="currentUser">
 
-   <form ng-show="scenario == 'Sign up'" class="form-horizontal">
+   <form ng-show="scenario == 'Sign up'" class="form-horizontal signup-form">
 
      <div class="form-group">
      <label for="email" class="col-sm-3 control-label" >Email: </label>
@@ -42,7 +42,7 @@
 
    </form>
 
-   <form ng-show="scenario == 'Log in'" name="loginForm" class="form-horizontal">
+   <form ng-show="scenario == 'Log in'" name="loginForm" class="form-horizontal login-form">
 
      <div class="form-group">
       <label for="username" class="col-sm-3 control-label" >Username: </label>
@@ -84,53 +84,72 @@
      </p>
    </div>
 
-    <!-- user orders -->
-    <div class="col-lg-6 col-lg-offset-3">
-    <table class="table table-hover">
-      <thead>
-        <th>Date</th>
-        <th>Total Paid</th>
-        <th>Status</th>
-        <th>View</th>
-        <th ng-show="currentUser.attributes.isEmployee">Order ID</th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="orderInfo in orders" ng-class="{
-          warning: orderInfo.attributes.status=='Pending',
-          success: orderInfo.attributes.status=='Completed',
-          info: orderInfo.attributes.status=='Shipped',
-          danger: orderInfo.attributes.status=='Canceled',
-        }" id="{{orderInfo.id}}">
-          <a href="#">
-          <td>{{orderInfo.createdAt | date : short}}</td>
 
-          <td>${{orderInfo.attributes.total}}</td>
+   <ul id="myTab" class="nav nav-tabs col-lg-8 col-lg-offset-2" role="tablist">
+         <li role="presentation" class="active"><a href="#orders" id="home-tab" role="tab" data-toggle="tab" aria-controls="orders" aria-expanded="true">Orders</a></li>
+         <li role="presentation" ng-show="currentUser.attributes.isEmployee"><a href="#inventory" role="tab" id="inventory-tab" data-toggle="tab" aria-controls="inventory">Inventory</a></li>
+   </ul>
 
-          <!-- if not employee, just show status-->
-          <td ng-hide="currentUser.attributes.isEmployee">{{orderInfo.attributes.status}}</td>
 
-          <td ng-show="currentUser.attributes.isEmployee">
-            <select ng-model="orderInfo.attributes.status" ng-change="changeOrderStatus(orderInfo.id, orderInfo.attributes.status)">
-              <option value="Pending">Pending</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Completed">Completed</option>
-              <option value="Canceled">Canceled</option>
-            </select>
-          </td>
 
-          <td><a href="#/complete/{{orderInfo.id}}">Details</a></td>
+   <div id="myTabContent" class="tab-content col-lg-8 col-lg-offset-2">
+         <div role="tabpanel" class="tab-pane fade in active" id="orders" aria-labelledby="orders-tab">
 
-          <td ng-show="currentUser.attributes.isEmployee">
-            <!-- show phone icon if it's a phone order -->
-            <span class="glyphicon glyphicon-earphone" ng-show="orderInfo.attributes.phone_order"></span>
-            {{orderInfo.id}}
-          </td>
-        </a>
-        </tr>
+           <!-- user orders -->
+           <table class="table table-hover">
+             <thead>
+               <th>Date</th>
+               <th>Total Paid</th>
+               <th>Status</th>
+               <th>View</th>
+               <th ng-show="currentUser.attributes.isEmployee">Order ID</th>
+             </thead>
+             <tbody>
+               <tr ng-repeat="orderInfo in orders" ng-class="{
+                 warning: orderInfo.attributes.status=='Pending',
+                 success: orderInfo.attributes.status=='Completed',
+                 info: orderInfo.attributes.status=='Shipped',
+                 danger: orderInfo.attributes.status=='Canceled',
+               }" id="{{orderInfo.id}}">
+                 <a href="#">
+                 <td>{{orderInfo.createdAt | date : short}}</td>
 
-      </tbody>
-    </table>
-    </div>
+                 <td>${{orderInfo.attributes.total}}</td>
+
+                 <!-- if not employee, just show status-->
+                 <td ng-hide="currentUser.attributes.isEmployee">{{orderInfo.attributes.status}}</td>
+
+                 <td ng-show="currentUser.attributes.isEmployee">
+                   <select ng-model="orderInfo.attributes.status" ng-change="changeOrderStatus(orderInfo.id, orderInfo.attributes.status)">
+                     <option value="Pending">Pending</option>
+                     <option value="Shipped">Shipped</option>
+                     <option value="Completed">Completed</option>
+                     <option value="Canceled">Canceled</option>
+                   </select>
+                 </td>
+
+                 <td><a href="#/complete/{{orderInfo.id}}">Details</a></td>
+
+                 <td ng-show="currentUser.attributes.isEmployee">
+                   <!-- show phone icon if it's a phone order -->
+                   <span class="glyphicon glyphicon-earphone" ng-show="orderInfo.attributes.phone_order"></span>
+                   {{orderInfo.id}}
+                 </td>
+               </a>
+               </tr>
+
+             </tbody>
+           </table>
+         </div>
+
+
+         <div role="tabpanel" class="tab-pane fade" id="inventory" aria-labelledby="inventory-tab">
+              INVENTORY REPORT:
+         </div>
+
+   </div>
+
+
 
 
 </div>

@@ -1,7 +1,10 @@
 <a href="#/account" class="small">< Back to all orders</a>
 
-<div class="alert alert-success" role="alert" ng-show="thanks">
-    Thanks for shopping! We've successfully received your order
+
+<div class="alerts-top">
+  <div class="alert alert-success" role="alert" ng-show="thanks">
+      Thanks for shopping! We've successfully received your order
+  </div>
 </div>
 
 
@@ -12,8 +15,13 @@
 
 			<div class="">
 				<h1 class="highlight">
-					{{order.attributes.status}} Order<small>&mdash; {{order.createdAt | date: short}}</small>
+          {{order.attributes.status}} Order
+          <small>&mdash;
+            {{order.createdAt | date: short}}
+            <span class="glyphicon glyphicon-earphone" ng-show="order.attributes.phone_order"></span>
+          </small>
 				</h1>
+
 			</div>
 
       <br>
@@ -24,7 +32,7 @@
 					<h4 class="media-heading">
             <a href="#/product/{{o.product.id}}">	{{o.product.attributes.title}}</a>
             <small>&ndash; {{o.size}}</small>
-					</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo.
+					</h4> {{o.product.attributes.desc}}
           <p class="bold">${{o.product.attributes.price}}</p>
 				</div>
       <br><hr style="width: 100%; margin-top: 40px; margin-bottom: 40px; ">
@@ -44,5 +52,13 @@
       </div>
 
 
+
 	</div>
+
+  <div ng-show="order.attributes.status === 'Pending'">
+    <center>
+      <p><a href="" class="text-danger small" ng-click="cancelOrder(order)">CANCEL</a></p>
+    </center>
+  </div>
+
 </div>
