@@ -196,7 +196,12 @@
             <tbody>
             <tr ng-repeat="item in ngCart.getCart().items track by $index">
                 <td><span ng-click="ngCart.removeItem($index)" class="glyphicon glyphicon-remove"></span></td>
-                <td>{{ item.getName() }}</td>
+                <td><img src="{{ item.getData()['image'] }}" style="height: 30px;">
+
+                <a href="#/product/{{item.getData()['id']}}">
+                  {{ item.getName() }}
+                </a>
+                </td>
                 <td><span class="glyphicon glyphicon-minus" ng-class="{'disabled':item.getQuantity()==1}"
                           ng-click="item.setQuantity(-1, true)"></span>&nbsp;&nbsp;
                     {{ item.getQuantity() | number }}&nbsp;&nbsp;
