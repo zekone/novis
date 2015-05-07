@@ -44,23 +44,34 @@
 
       <!-- shipping section -->
       <div class="row container-fluid">
-        <h4 class="highlight">Shipping</h4>
+        <h4 class="highlight">Address Details</h4>
 
       </div>
+
+
       <div class="row col-lg-6" ng-show="order.attributes.ship_add1">
+        <b>Shipping:</b><br>
         {{order.attributes.ship_name}}<br>
         {{order.attributes.ship_add1}} <span ng-hide="order.attributes.ship_add2 == '' ">- {{order.attributes.ship_add2}}</span><br>
         {{order.attributes.ship_city}}, {{order.attributes.ship_state}}<br>
         {{order.attributes.ship_country}}
       </div>
 
+      <div class="row col-lg-6" ng-show="order.attributes.bill_add1">
+        <b>Billing:</b><br>
+        {{order.attributes.bill_name}}<br>
+        {{order.attributes.bill_add1}} <span ng-hide="order.attributes.bill_add2 == '' ">- {{order.attributes.bill_add2}}</span><br>
+        {{order.attributes.bill_city}}, {{order.attributes.bill_state}}<br>
+        {{order.attributes.bill_country}}
+      </div>
 
+<br><br>
 
 	</div>
 
   <div ng-show="order.attributes.status === 'Pending'">
     <center>
-      <p><a href="" class="text-danger small" ng-click="cancelOrder(order)">CANCEL</a></p>
+      <p><a href="" class="row text-danger small" ng-click="cancelOrder(order)">CANCEL</a></p>
     </center>
   </div>
 
