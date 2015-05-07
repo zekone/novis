@@ -257,7 +257,7 @@ angular.module('ngCart', ['ngCart.directives'])
                 this._quantity = 1;
                 $log.info('Quantity must be an integer and was defaulted to 1');
             }
-            $rootScope.$broadcast('ngCart:change', {});
+            $rootScope.$broadcast('ngCart:change', {qt : this._quantity, id: this._id});
 
         };
 

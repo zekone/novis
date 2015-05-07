@@ -28,6 +28,23 @@ angular
   .run(['$rootScope', function($scope) {
      //parse login
 
+
+     //alert check for ordering too much of one item.
+     $scope.$on('ngCart:change', function(event, args) {
+       var quantityorder = args.qt;
+       var inv = Parse.Object.extend("inventory");
+       var query = new Parse.Query(inv);
+
+       query.get( args.id ).then(function(item){
+         if(item.attributes.quantity < args.qt ){
+           alert("We have " + item.attributes.quantity + " in stock right now. We can order more if you'd like and ship to you when we have it.");
+         }
+       });
+
+     });
+
+
+
      $scope.currentUser = Parse.User.current();
   /*
     $scope.currentUser = Parse.User.current();

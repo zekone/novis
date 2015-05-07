@@ -60,6 +60,10 @@ angular.module('yoNovisApp')
     console.log("ITEMS : " );
     console.log($scope.items);
 
+
+    
+
+
     $scope.afunc = function(){
       console.log("SHIPPING");
       console.log($scope.shipping);
@@ -90,7 +94,7 @@ angular.module('yoNovisApp')
       order.set("phone_order", $scope.phone);
 
       order.set("ship_phone", $scope.shipping.phone);
-      
+
 
       order.save(null, {
         success: function(r) {

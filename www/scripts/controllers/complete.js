@@ -51,7 +51,7 @@ angular.module('yoNovisApp')
       console.log(orderitems);
       _.each(orderitems, function(result, index) {
           $scope.orderItems[index] = {};
-
+          $scope.orderItems[index]= result;
 
           var inv = Parse.Object.extend("inventory");
           var query = new Parse.Query(inv);

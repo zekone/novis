@@ -89,6 +89,7 @@ angular.module('yoNovisApp')
 
           query.equalTo("product_id", product);
 
+          query.greaterThanOrEqualTo('quantity', 1);
           query.find({
             success: function(res){
               defer.resolve(res);
@@ -254,6 +255,18 @@ angular.module('yoNovisApp')
 
           return defer.promise;
         },
+
+
+        //employee get inventory report
+        emp_getInventory: function(){
+          console.log("getting report of all inventory");
+          var defer = $q.defer();
+
+
+
+          console.log(ALLPRODUCTS);
+          return defer.promise;
+        }
 
 
       };

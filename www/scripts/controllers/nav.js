@@ -17,6 +17,10 @@ angular.module('yoNovisApp')
       }, error: function(e,r){
         console.log(e);
       }
-    })
+    });
+
+
+
+
 
   });

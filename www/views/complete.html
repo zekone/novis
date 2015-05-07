@@ -28,7 +28,7 @@
       <div class="row container-fluid"  ng-repeat="o in orderItems">
 			<div class="media">
     		 <a href="#/product/{{o.product.id}}" class="pull-left"><img src="{{o.product.attributes.image}}" class="media-object" alt='' /></a>
-				<div class="media-body">
+				<div class="media-body">Quantity: {{o.attributes.quantity}}
 					<h4 class="media-heading">
             <a href="#/product/{{o.product.id}}">	{{o.product.attributes.title}}</a>
             <small>&ndash; {{o.size}}</small>
@@ -39,13 +39,16 @@
 			</div> <!-- end media object -->
       </div>
 
+      <p><b>Shipping: </b> {{order.attributes.ship_method}} - ${{order.attributes.ship_cost}}</p>
+      <b>Total: </b>${{order.attributes.total}}
 
       <!-- shipping section -->
       <div class="row container-fluid">
         <h4 class="highlight">Shipping</h4>
-        <p><b>Shipping Method: </b> {{order.attributes.ship_method}} - ${{order.attributes.ship_cost}}</p>
+
       </div>
       <div class="row col-lg-6" ng-show="order.attributes.ship_add1">
+        {{order.attributes.ship_name}}<br>
         {{order.attributes.ship_add1}} <span ng-hide="order.attributes.ship_add2 == '' ">- {{order.attributes.ship_add2}}</span><br>
         {{order.attributes.ship_city}}, {{order.attributes.ship_state}}<br>
         {{order.attributes.ship_country}}
