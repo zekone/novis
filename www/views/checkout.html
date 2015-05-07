@@ -77,7 +77,7 @@
 
 <!-- shipping -->
 <div class="container-fluid">
-<br><h3><center>Address Details</center></h3><br>
+<br><h3><center>Shipping Address</center></h3><br>
 <form class="form-horizontal row" name="addressform" role="form">
 <div class="col-md-4 col-md-offset-2">
 
@@ -143,14 +143,20 @@
         </div>
 
 
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Phone</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Phone" ng-model="shipping.phone" class="form-control">
+          </div>
+        </div>
+
+
         <div class="checkbox" ng-show="currentUser.attributes.isEmployee">
           <label>
             <input type="checkbox" ng-model="phone"> Phone Order
           </label>
+        </div>
 
-        <label>
-          <input type="text" placeholder="Phone" ng-model="shipping.phone" class="form-control">
-        </label>
 
         </div>
 
@@ -162,9 +168,99 @@
 </div>
 
 <br>
+<center><p><input type="checkbox" ng-model="sameAddress"> Same billing address?</input>
+</p></center>
+<br>
+
+
+<div class="container-fluid">
+<br><h3><center>Billing Address</center></h3><br>
+<form class="form-horizontal row" name="billingform" role="form">
+<div class="col-md-4 col-md-offset-2">
+
+      <fieldset>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Name</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Name" ng-model="billing.name" required class="form-control" >
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Line 1</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Address Line 1" ng-model="billing.add1" required class="form-control" >
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Line 2</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Address Line 2" ng-model="billing.add2" class="form-control">
+          </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">City</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="City" ng-model="billing.city" required class="form-control">
+          </div>
+        </div>
+
+      </fieldset>
+  </div>
+  <div class="col-md-4 form-horizontal">
+
+      <fieldset>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">State</label>
+          <div class="col-sm-4">
+            <input type="text" placeholder="State" ng-model="billing.state" required class="form-control">
+          </div>
+
+          <label class="col-sm-2 control-label" for="textinput">Zipcode</label>
+          <div class="col-sm-4">
+            <input type="text" placeholder="Post Code" ng-model="billing.zip" required class="form-control">
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Country</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Country" ng-model="billing.country" required class="form-control">
+          </div>
+        </div>
+
+
+
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="textinput">Phone</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Phone" ng-model="billing.phone" class="form-control">
+          </div>
+        </div>
+
+      </fieldset>
+
+
+  </div><!-- /.col-lg-12 -->
+</form>
+<!-- billing -->
+</div>
+
+
+
 
 <div class="col-md-8 col-md-offset-2">
-  <button id="customButton" class="pull-right btn btn-primary" ng-show="ngCart.getTotalItems() > 0" ng-disabled="addressform.$invalid || !shippingMethod">Purchase</button>
+  <button id="customButton" class="pull-right btn btn-primary" ng-show="ngCart.getTotalItems() > 0" ng-disabled="addressform.$invalid || !shippingMethod || billingform.$invalid">Purchase</button>
 </div>
 
 

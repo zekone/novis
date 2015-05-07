@@ -46,6 +46,30 @@ angular.module('yoNovisApp')
 
     };
 
+    $scope.billing ={
+      name : "",
+      add1 : "",
+      add2 : null,
+      city : "",
+      zip  : "",
+      state: "",
+      country: "",
+      phone: ""
+
+    };
+
+    $scope.sameAddress = false;
+
+
+    $scope.$watch('sameAddress', function(value) {
+     console.log(value);
+     if(value) {
+        $scope.billing = $scope.shipping;
+     } else {
+        $scope.shipping = angular.copy($scope.shipping);
+     }
+    })
+
     var array = ngCart.getItems();
 
     //adding item titels to a long string
@@ -61,7 +85,7 @@ angular.module('yoNovisApp')
     console.log($scope.items);
 
 
-    
+
 
 
     $scope.afunc = function(){
@@ -89,6 +113,15 @@ angular.module('yoNovisApp')
       order.set("ship_zip", $scope.shipping.zip);
       order.set("ship_state", $scope.shipping.state);
       order.set("ship_country", $scope.shipping.country);
+
+      order.set("bill_name", $scope.billing.name);
+      order.set("bill_add1", $scope.billing.add1);
+      order.set("bill_add2", $scope.billing.add2);
+      order.set("bill_city", $scope.billing.city);
+      order.set("bill_zip", $scope.billing.zip);
+      order.set("bill_state", $scope.billing.state);
+      order.set("bill_country", $scope.billing.country);
+      order.set("bill_phone", $scope.billing.phone);
 
 
       order.set("phone_order", $scope.phone);
