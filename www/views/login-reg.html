@@ -168,6 +168,7 @@
                       <th>SIZE</th>
                       <th>QTY.</th>
                     </tr>
+                    <tr ng-hide="prod.sizes.length > 0" style="display:none"><td colspan="5"><center><b>NO SIZES AVAILABLE</b></center></td></tr>
                     <tr ng-repeat="s in prod.sizes" ng-show="prod.sizes.length > 0" style="display:none;">
                       <td></td>
                       <td></td>
@@ -194,7 +195,7 @@
 $(document).ready(function(){
 
 
-  
+
 
 });
 </script>

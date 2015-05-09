@@ -194,25 +194,16 @@ angular.module('yoNovisApp')
                 $scope.showRows();
               }, 300);
 
-
             }
           });
-
-
 
         }
       });
 
       $scope.showRows = function(){
         $(".inv-row").click(function(){
-
-
           $(this).find("tr").not(".prod-row").toggle();
         });
       };
-
-
-
-
 
   });
