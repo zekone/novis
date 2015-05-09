@@ -83,16 +83,16 @@
        <span class="badge" style="cursor: pointer;"><span class="danger glyphicon glyphicon-remove" ng-click="logOut(user)"></span></span>
      </p>
    </div>
+   <br>
 
-
-   <ul id="myTab" class="nav nav-tabs col-lg-8 col-lg-offset-2" role="tablist">
+   <ul id="myTab" class="nav nav-tabs col-lg-10 col-lg-offset-1" role="tablist">
          <li role="presentation" class="active"><a href="#orders" id="home-tab" role="tab" data-toggle="tab" aria-controls="orders" aria-expanded="true">Orders</a></li>
          <li role="presentation" ng-show="currentUser.attributes.isEmployee"><a href="#inventory" role="tab" id="inventory-tab" data-toggle="tab" aria-controls="inventory">Inventory</a></li>
    </ul>
 
 
 
-   <div id="myTabContent" class="tab-content col-lg-8 col-lg-offset-2">
+   <div id="myTabContent" class="tab-content col-lg-10 col-lg-offset-1">
          <div role="tabpanel" class="tab-pane fade in active" id="orders" aria-labelledby="orders-tab">
 
            <br><div ng-hide='orders.length > 0'><p>No orders yet. Start shopping!</p></div>
@@ -145,12 +145,56 @@
 
 
          <div role="tabpanel" class="tab-pane fade" id="inventory" aria-labelledby="inventory-tab">
-              INVENTORY REPORT:
-         </div>
 
-   </div>
+              <table class="table" >
+                <thead>
+                  <th>Product Name</th>
+                  <th>Description</th>
+                  <th>Price</th>
+                  <th>Color</th>
+                </thead>
+                <tbody ng-repeat="prod in INVREPORT" class="clickable inv-row row-{{$index}}" >
+                  <tr class="prod-row">
+                    <td>{{prod.attributes.title}}</td>
+                    <td>{{prod.attributes.desc | limitTo: 200}}...</td>
+                    <td>${{prod.attributes.price}}</td>
+                    <td>{{prod.attributes.color}}</td>
+                  </tr>
+
+                    <!-- sub rows -->
+                    <tr ng-show="prod.sizes.length > 0" class="sub-row-{{$index}}" style="display:none;">
+                      <th></th>
+                      <th></th>
+                      <th>SIZE</th>
+                      <th>QTY.</th>
+                    </tr>
+                    <tr ng-repeat="s in prod.sizes" ng-show="prod.sizes.length > 0" style="display:none;">
+                      <td></td>
+                      <td></td>
+                      <td>{{s.attributes.size}}</td>
+                      <td>{{s.quantity}}</td>
+                    </tr>
+
+                    <!-- /sub rows -->
+
+                </tbody>
+              </table>
+
+            </div>
+
+   </div> <!-- tab content -->
 
 
 
 
 </div>
+
+
+<script>
+$(document).ready(function(){
+
+
+  
+
+});
+</script>

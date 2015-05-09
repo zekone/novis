@@ -29,6 +29,10 @@ html, body{
   text-decoration: none;
 }
 
+.clickable{
+  cursor: pointer;
+}
+
 
 .img-large{
   width: 100%;
@@ -206,4 +210,8 @@ input.ng-invalid, select.ng-invalid{
 .cart-img{
   height: 40px;
   padding-right: 8px;
+}
+
+tbody.inv-row:nth-child(even){
+  background: #eee;
 }

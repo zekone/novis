@@ -8,7 +8,7 @@
  * Controller of the yoNovisApp
  */
 angular.module('yoNovisApp')
-  .controller('LoginregCtrl', function ($scope, ngCart, $rootScope, catService) {
+  .controller('LoginregCtrl', function ($scope, ngCart, $rootScope, catService, $timeout) {
 
 
     $scope.scenario = "Log in";
@@ -135,17 +135,19 @@ angular.module('yoNovisApp')
 
       var ALLSIZES = {};
 
+      $scope.INVREPORT = {};
+      console.log($scope.INVREPORT);
+
       query.find({
         success: function(products){
           ALLPRODUCTS = products;
-
           //stored all products, now query INVENTORY and match product ids
           var query = new Parse.Query(inv);
           query.descending("product_id");
 
           query.find({
             success: function(inv){
-
+              console.log(inv);
               //query for ALL SIZES
               var Sizes = Parse.Object.extend("sizes");
               var sizeq = new Parse.Query(Sizes);
@@ -153,44 +155,62 @@ angular.module('yoNovisApp')
               sizeq.find({
                 success: function(sizes){
                   ALLSIZES = sizes;
-                  console.log(ALLSIZES[1].id);
 
                   //loop through inv and match products
                   for(var i =0; i< inv.length; i++){
-
                     for(var j = 0; j < ALLPRODUCTS.length; j++){
-                      if (inv[i].attributes['product_id'].id == ALLPRODUCTS[j].id ){
-                          //we have a matching inv and product record
-                          //now find a size to match the inv
-                          console.log("match");
-                          ALLPRODUCTS[j]['sizes'] = [];
-                          ALLPRODUCTS[j]['sizes'].push(inv[i]);
 
-                          for (var s=0; s < ALLSIZES.length; s++){
-                            console.log(ALLPRODUCTS[j]['sizes'][ ALLPRODUCTS[j]['sizes'].length-1 ].attributes.size_id.id);
-                            if(ALLPRODUCTS[j]['sizes'][ ALLPRODUCTS[j]['sizes'].length-1 ].attributes.size_id.id == ALLSIZES[s].id){
-                              ALLPRODUCTS[j]['sizes'][ ALLPRODUCTS[j]['sizes'].length -1] = ALLSIZES[s];
-                              console.log('changed');
-                            }
+                      if ( ALLPRODUCTS[j].sizes== null ) ALLPRODUCTS[j].sizes = [];
+
+                      if( inv[i].attributes.product_id.id == ALLPRODUCTS[j].id ){
+                        //matched
+
+                        // ALLPRODUCTS[j].sizes = ALLSIZES
+                        for (var s =0; s< ALLSIZES.length; s++){
+                          if ( ALLSIZES[s].id == inv[i].attributes.size_id.id ){
+                            var size = ALLSIZES[s];
+                            size.quantity = inv[i].attributes.quantity;
+
+                            ALLPRODUCTS[j].sizes.push(size);
+
+
                           }
+                        }
+
+
                       }
                     }
-
                   }
 
                 }
               })//sizeq
 
 
+              $scope.INVREPORT = ALLPRODUCTS;
+              console.log($scope.INVREPORT);
 
-              $scope.$apply();
-              console.log(ALLPRODUCTS);
+              $timeout(function(){
+                $scope.$apply();
+                $scope.showRows();
+              }, 300);
+
 
             }
-          })
+          });
+
+
 
         }
       });
+
+      $scope.showRows = function(){
+        $(".inv-row").click(function(){
+
+
+          $(this).find("tr").not(".prod-row").toggle();
+        });
+      };
+
 
 
 
