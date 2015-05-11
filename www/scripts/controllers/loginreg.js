@@ -130,80 +130,93 @@ angular.module('yoNovisApp')
       var inv = Parse.Object.extend("inventory");
       var prod = Parse.Object.extend("products");
 
-      var query = new Parse.Query(prod);
-      var ALLPRODUCTS = {};
+
+      var Sizes = Parse.Object.extend("sizes");
+      var sizeq = new Parse.Query(Sizes);
+
 
       var ALLSIZES = {};
+      sizeq.find({
+        success: function(sizes){
+          for(var i = 0; i < sizes.length; i++){
+            ALLSIZES[sizes[i].id] = sizes[i];
+          }
+        }
+      })
 
-      $scope.INVREPORT = {};
-      console.log($scope.INVREPORT);
+
+      var ALLPRODUCTS = {};
+
+
+      var query = new Parse.Query(inv);
+
+
+
+
+      var query = new Parse.Query(prod);
 
       query.find({
-        success: function(products){
-          ALLPRODUCTS = products;
-          //stored all products, now query INVENTORY and match product ids
-          var query = new Parse.Query(inv);
-          //query.descending("createdAt");
-
-          query.find({
-            success: function(inv){
-              //query for ALL SIZES
-              var Sizes = Parse.Object.extend("sizes");
-              var sizeq = new Parse.Query(Sizes);
-
-              sizeq.find({
-                success: function(sizes){
-                  ALLSIZES = sizes;
-
-                  //loop through inv and match products
-                  for(var i =0; i< inv.length; i++){
-                    console.log("inv loop");
-                    for(var j = 0; j < ALLPRODUCTS.length; j++){
-
-                      if ( ALLPRODUCTS[j].sizes== null ) ALLPRODUCTS[j].sizes = [];
-
-                      if( inv[i].attributes.product_id.id == ALLPRODUCTS[j].id ){
-                        //matched
-
-                        // ALLPRODUCTS[j].sizes = ALLSIZES
-                        for (var s =0; s< ALLSIZES.length; s++){
-                          if ( ALLSIZES[s].id == inv[i].attributes.size_id.id ){
-                            var size = ALLSIZES[s];
-                            size.quantity = inv[i].attributes.quantity;
-
-                            ALLPRODUCTS[j].sizes.push(size);
-
-
-                          }
-                        }
-
-
-                      }
-                    }
-                  }
-
-                }
-              })//sizeq
-
-
-              $scope.INVREPORT = ALLPRODUCTS;
-              console.log($scope.INVREPORT);
-
-              $timeout(function(){
-                $scope.$apply();
-                $scope.showRows();
-              }, 300);
-
-            }
-          });
-
+        success: function(p){
+          $scope.INVREPORT = p;
+          $scope.$apply();
         }
       });
 
-      $scope.showRows = function(){
-        $(".inv-row").click(function(){
-          $(this).find("tr").not(".prod-row").toggle();
-        });
+
+      $scope.getInv = function(id, index){
+
+
+
+
+        var Inv = Parse.Object.extend("inventory");
+        var Sizes = Parse.Object.extend("sizes");
+
+        var query = new Parse.Query(Inv);
+
+        query.equalTo("product_id", id);
+
+        if ($scope.INVREPORT[index].sizes == null)
+        {
+
+
+        $scope.INVREPORT[index].sizes = [];
+
+        console.log(ALLSIZES);
+
+        query.find( {
+          success: function(inv){
+            console.log(inv);
+
+            for(var i = 0; i<inv.length; i++){
+              query = new Parse.Query(Sizes);
+              query.equalTo("size_id", inv[i].attributes.size_id.id);
+
+                var siz = {
+                  'size' : ALLSIZES[inv[i].attributes.size_id.id],
+                  'qt'   : inv[i].attributes.quantity
+                };
+
+                $scope.INVREPORT[index].sizes.push(siz);
+
+                $scope.$apply();
+            }
+
+
+          },
+          error: function(e,r){
+            console.log(r);
+          }
+        })
+
+      }
+
+
+      $timeout( function(){ $scope.$apply(); $(".row-"+ index).find("tr").not(".prod-row").toggle();  }, 400);
+
+
+
       };
+
+
 
   });

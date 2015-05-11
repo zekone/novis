@@ -153,7 +153,7 @@
                   <th>Price</th>
                   <th>Color</th>
                 </thead>
-                <tbody ng-repeat="prod in INVREPORT" class="clickable inv-row row-{{$index}}" >
+                <tbody ng-repeat="prod in INVREPORT" class="clickable inv-row row-{{$index}}"  ng-click="getInv(prod, $index)">
                   <tr class="prod-row">
                     <td><img src="{{prod.attributes.image}}" height="40px"></td>
                     <td><b>{{prod.attributes.title}}</b> - {{prod.attributes.desc }}</td>
@@ -162,18 +162,18 @@
                   </tr>
 
                     <!-- sub rows -->
-                    <tr ng-show="prod.sizes.length > 0" class="sub-row-{{$index}}" style="display:none;">
+                    <tr class="sub-row-{{$index}}" style="display:none;" >
                       <th></th>
                       <th></th>
                       <th>SIZE</th>
                       <th>QTY.</th>
                     </tr>
-                    <tr ng-hide="prod.sizes.length > 0" style="display:none"><td colspan="5"><center><b>NO SIZES AVAILABLE</b></center></td></tr>
-                    <tr ng-repeat="s in prod.sizes" ng-show="prod.sizes.length > 0" style="display:none;">
+                    <!-- <tr ng-hide="prod.sizes.length > 0" style="display:none"><td colspan="5"><center><b>NO SIZES AVAILABLE</b></center></td></tr> -->
+                    <tr ng-repeat="s in prod.sizes" style="display:none;"  >
                       <td></td>
                       <td></td>
-                      <td>{{s.attributes.size}}</td>
-                      <td>{{s.quantity}}</td>
+                      <td>{{s.size.attributes.size}}</td>
+                      <td>{{s.qt}}</td>
                     </tr>
 
                     <!-- /sub rows -->
@@ -193,9 +193,9 @@
 
 <script>
 $(document).ready(function(){
-
-
-
+  // $(".inv-row").click(function(){
+  //     $(this).find("tr").not(".prod-row").toggle();
+  //   });
 
 });
 </script>
