@@ -143,11 +143,10 @@ angular.module('yoNovisApp')
           ALLPRODUCTS = products;
           //stored all products, now query INVENTORY and match product ids
           var query = new Parse.Query(inv);
-          query.descending("product_id");
+          //query.descending("createdAt");
 
           query.find({
             success: function(inv){
-              console.log(inv);
               //query for ALL SIZES
               var Sizes = Parse.Object.extend("sizes");
               var sizeq = new Parse.Query(Sizes);
@@ -158,6 +157,7 @@ angular.module('yoNovisApp')
 
                   //loop through inv and match products
                   for(var i =0; i< inv.length; i++){
+                    console.log("inv loop");
                     for(var j = 0; j < ALLPRODUCTS.length; j++){
 
                       if ( ALLPRODUCTS[j].sizes== null ) ALLPRODUCTS[j].sizes = [];

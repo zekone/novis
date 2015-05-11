@@ -148,15 +148,15 @@
 
               <table class="table" >
                 <thead>
-                  <th>Product Name</th>
-                  <th>Description</th>
+                  <th>Image</th>
+                  <th>Product</th>
                   <th>Price</th>
                   <th>Color</th>
                 </thead>
                 <tbody ng-repeat="prod in INVREPORT" class="clickable inv-row row-{{$index}}" >
                   <tr class="prod-row">
-                    <td>{{prod.attributes.title}}</td>
-                    <td>{{prod.attributes.desc | limitTo: 200}}...</td>
+                    <td><img src="{{prod.attributes.image}}" height="40px"></td>
+                    <td><b>{{prod.attributes.title}}</b> - {{prod.attributes.desc }}</td>
                     <td>${{prod.attributes.price}}</td>
                     <td>{{prod.attributes.color}}</td>
                   </tr>
