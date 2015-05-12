@@ -155,8 +155,8 @@
                 </thead>
                 <tbody ng-repeat="prod in INVREPORT" class="clickable inv-row row-{{$index}}"  ng-click="getInv(prod, $index)">
                   <tr class="prod-row">
-                    <td><img src="{{prod.attributes.image}}" height="40px"></td>
-                    <td><b>{{prod.attributes.title}}</b> - {{prod.attributes.desc }}</td>
+                    <td><img src="{{prod.attributes.image}}" height="60px"></td>
+                    <td><b><a href="#/product/{{prod.id}}">{{prod.attributes.title}}</a></b> - {{prod.attributes.desc }}</td>
                     <td>${{prod.attributes.price}}</td>
                     <td>{{prod.attributes.color}}</td>
                   </tr>
@@ -169,7 +169,7 @@
                       <th>QTY.</th>
                     </tr>
                     <!-- <tr ng-hide="prod.sizes.length > 0" style="display:none"><td colspan="5"><center><b>NO SIZES AVAILABLE</b></center></td></tr> -->
-                    <tr ng-repeat="s in prod.sizes" style="display:none;"  >
+                    <tr ng-repeat="s in prod.sizes" style="display:none;"  ng-class="{danger: s.qt <= 0, warning: s.qt > 0 && s.qt <= 5}" >
                       <td></td>
                       <td></td>
                       <td>{{s.size.attributes.size}}</td>

@@ -187,6 +187,17 @@ angular.module('yoNovisApp')
           success: function(inv){
             console.log(inv);
 
+            if( inv.length == 0 ){
+              console.log("NONE");
+              
+              var siz = {
+                'size' : 'Large',
+                'qt' : 0
+              }
+
+            }
+            else{
+
             for(var i = 0; i<inv.length; i++){
               query = new Parse.Query(Sizes);
               query.equalTo("size_id", inv[i].attributes.size_id.id);
@@ -200,7 +211,7 @@ angular.module('yoNovisApp')
 
                 $scope.$apply();
             }
-
+          }
 
           },
           error: function(e,r){
