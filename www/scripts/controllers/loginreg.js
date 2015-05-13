@@ -189,7 +189,7 @@ angular.module('yoNovisApp')
 
             if( inv.length == 0 ){
               console.log("NONE");
-              
+
               var siz = {
                 'size' : 'Large',
                 'qt' : 0
@@ -222,7 +222,7 @@ angular.module('yoNovisApp')
       }
 
 
-      $timeout( function(){ $scope.$apply(); $(".row-"+ index).find("tr").not(".prod-row").toggle();  }, 400);
+      $timeout( function(){ $scope.$apply(); $(".row-"+ index).find("tr").not(".prod-row").toggle();  }, 550);
 
 
 
