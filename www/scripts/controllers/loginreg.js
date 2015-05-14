@@ -167,6 +167,8 @@ angular.module('yoNovisApp')
 
 
 
+        $(".spinner").show();
+
 
         var Inv = Parse.Object.extend("inventory");
         var Sizes = Parse.Object.extend("sizes");
@@ -222,7 +224,8 @@ angular.module('yoNovisApp')
       }
 
 
-      $timeout( function(){ $scope.$apply(); $(".row-"+ index).find("tr").not(".prod-row").toggle();  }, 550);
+      $timeout( function(){ $scope.$apply(); $(".row-"+ index).find("tr").not(".prod-row").toggle();      $(".spinner").hide();
+}, 550);
 
 
 
